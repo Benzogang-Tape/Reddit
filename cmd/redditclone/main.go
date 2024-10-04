@@ -1,15 +1,32 @@
 package main
 
 import (
+	"database/sql"
 	"github.com/Benzogang-Tape/Reddit/internal/service"
 	"github.com/Benzogang-Tape/Reddit/internal/storage"
 	"github.com/Benzogang-Tape/Reddit/internal/transport/rest"
+	_ "github.com/go-sql-driver/mysql"
 	"go.uber.org/zap"
 	"log"
 	"net/http"
 )
 
 func main() {
+	dsn := "root:pass@tcp(localhost:3306)/reddit?"
+	dsn += "charset=utf8"
+	dsn += "&interpolateParams=true"
+
+	db, err := sql.Open("mysql", dsn)
+
+	//db.SetMaxOpenConns(10)
+
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+
+	// ---
+
 	zapLogger, err := zap.NewProduction()
 	if err != nil {
 		log.Fatalln("Logger init error")
