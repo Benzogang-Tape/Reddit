@@ -13,5 +13,5 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` (`id`, `uuid`, `login`, `password`) VALUES
-(1,	'ffffffff-ffff-ffff-ffff-ffffffffffff',	'admin',	'root'),
-(2,	'8f4a45c5-e8b8-46d6-9c7f-2ba54447175d',	'test_user',	'user');
+(1,	'ffffffff-ffff-ffff-ffff-ffffffffffff',	'admin',	'rootroot'),
+(2,	'8f4a45c5-e8b8-46d6-9c7f-2ba54447175d',	'test_user',	'useruser');
