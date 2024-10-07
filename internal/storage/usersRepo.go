@@ -110,7 +110,7 @@ func (repo *UserRepo) createUser(authData models.AuthUserInfo) (*models.User, er
 	if err != nil {
 		return nil, err
 	}
-	_, err = repo.db.Exec("INSERT INTO users (`uuid`, `login` `password`) VALUES (?, ?)", newUser.ID, newUser.Username, newUser.Password)
+	_, err = repo.db.Exec("INSERT INTO users (`uuid`, `login`, `password`) VALUES (?, ?, ?)", newUser.ID, newUser.Username, newUser.Password)
 	if err != nil {
 		return nil, err
 	}

@@ -34,7 +34,7 @@ func main() {
 	defer zapLogger.Sync() //nolint:errcheck
 	logger := zapLogger.Sugar()
 
-	userStorage := storage.NewUserRepo()
+	userStorage := storage.NewUserRepo(db)
 	userHandler := service.NewUserHandler(userStorage)
 	u := rest.NewUserHandler(userHandler, logger)
 
