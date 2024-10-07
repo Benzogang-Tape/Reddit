@@ -6,8 +6,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(37) NOT NULL
-  `login` varchar(127) NOT NULL,
+  `uuid` varchar(37) UNIQUE NOT NULL,
+  `login` varchar(127) UNIQUE NOT NULL,
   `password` varchar(127) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
