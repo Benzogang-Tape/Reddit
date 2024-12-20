@@ -13,7 +13,6 @@ require (
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.9.0
 	github.com/swaggo/http-swagger v1.3.4
-	github.com/swaggo/http-swagger/example/gorilla v0.0.0-20240815064334-3a7ae3083475
 	github.com/swaggo/swag v1.16.4
 	go.mongodb.org/mongo-driver v1.17.1
 	go.uber.org/zap v1.27.0
