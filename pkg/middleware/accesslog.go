@@ -1,9 +1,10 @@
 package middleware
 
 import (
-	"go.uber.org/zap"
 	"net/http"
 	"time"
+
+	"go.uber.org/zap"
 )
 
 func AccessLog(logger *zap.SugaredLogger, next http.Handler) http.Handler {

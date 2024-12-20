@@ -1,0 +1,73 @@
+version: '3'
+
+# docker rm $(docker ps -a -q) && docker volume prune -f
+
+services:
+  reddit:
+    container_name: redditclone
+    build:
+      context: .
+      args:
+        PORT: ${APP_PORT:-8081}
+        APP_NAME: ${APP_NAME}
+        BUILD_DATE: $(date -u +"%Y%m%d%H%M%SZ")
+    ports:
+      - 8081:${APP_PORT:-8081}
+    expose:
+      - ${APP_PORT:-8081}
+    env_file:
+      - .env
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: on-failure
+    volumes:
+      - "./internal/config/config.yaml:/app/config.yaml"
+      - "./static/:/app/static/"
+      - "./docs/:/app/docs/"
+
+  mysql:
+    image: mysql:8
+    container_name: MySQL
+    command: --mysql-native-password=ON
+    env_file:
+      - .env
+    ports:
+      - 3306:${MYSQL_PORT:-3306}
+    volumes:
+      - './init/db_tables/:/docker-entrypoint-initdb.d/'
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      timeout: 10s
+
+  mongodb:
+    image: mongo:5
+    container_name: MongoDB
+    env_file:
+      - .env
+    ports:
+      - "27017-27019:${MONGO_PORT:-27017-27019}"
+    healthcheck:
+      test: ["CMD","mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      retries: 5
+      timeout: 10s
+
+  redis:
+    image: redis
+    container_name: Redis_cache
+    ports:
+      - 6379:${REDIS_PORT:-6379}
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      interval: 10s
+      retries: 5
+      timeout: 10s

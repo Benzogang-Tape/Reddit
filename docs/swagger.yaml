@@ -1,0 +1,708 @@
+basePath: /api
+definitions:
+  errs.ComplexErr:
+    description: ComplexErr contains a more detailed description of the error, including
+      the location and cause of the error
+    properties:
+      location:
+        description: Any type
+      msg:
+        description: Any type
+      param:
+        description: Any type
+      value:
+        description: Any type
+    type: object
+  errs.ComplexErrArr:
+    description: ComplexErrArr is an array of ComplexErr returned in case of a non-obvious
+      error
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/errs.ComplexErr'
+        type: array
+    type: object
+  errs.SimpleErr:
+    description: SimpleErr stores a brief description of an error
+    properties:
+      message:
+        description: Any type
+    type: object
+  jwt.Session:
+    description: Session stores the JWT token of the session
+    properties:
+      token:
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzUyMzU3ODAsImlhdCI6MTczNDYzMDk4MCwidXNlciI6eyJ1c2VybmFtZSI6InRlc3RfdXNlciIsImlkIjoiZDNkNzc1YmEtYTFlZS00MTEwLTkwOTktMTA0ZDVkYzFkYzQ2In19.I_3_yHlH1QUuKavtx8xVN_IRFMYXg3dYumzSrImA_NM
+        type: string
+    type: object
+  jwt.TokenPayload:
+    description: TokenPayload stores the User payload contained in the JWT Session
+      token
+    properties:
+      id:
+        description: User id
+        example: 12345678-9abc-def1-2345-6789abcdef12
+        maxLength: 36
+        minLength: 36
+        type: string
+      username:
+        description: User login
+        example: test_user
+        type: string
+    type: object
+  posts.Comment:
+    description: Comment contains the text of the comment on Post
+    properties:
+      comment:
+        example: Some comment body example
+        minLength: 4
+        type: string
+    type: object
+  posts.Post:
+    description: Post Contains all the information about a particular post in the
+      app
+    properties:
+      author:
+        allOf:
+        - $ref: '#/definitions/jwt.TokenPayload'
+        description: User who created the Post
+      category:
+        allOf:
+        - $ref: '#/definitions/posts.PostCategory'
+        description: Number of the category to which the Post belongs
+        example: 0
+      comments:
+        description: List of all comments left by users under the post
+        items:
+          $ref: '#/definitions/posts.PostComment'
+        type: array
+      created:
+        description: Date the Post was created
+        example: "2006-01-02T15:04:05.999Z"
+        format: date-time
+        type: string
+      id:
+        example: 12345678-9abc-def1-2345-6789abcdef12
+        maxLength: 36
+        minLength: 36
+        type: string
+      score:
+        description: The overall balance of the post's votes
+        example: -1
+        type: integer
+      text:
+        description: Content of the Post
+        example: Awesome text
+        minLength: 4
+        type: string
+      title:
+        example: Awesome title
+        type: string
+      type:
+        allOf:
+        - $ref: '#/definitions/posts.PostType'
+        description: Post with text(1) or with a link(0)
+        example: 1
+      upvotePercentage:
+        description: Percentage of positive Votes to Post
+        example: 75
+        maximum: 100
+        minimum: 0
+        type: integer
+      url:
+        example: http://localhost:8080/
+        type: string
+      views:
+        description: How many times the post has been viewed by users
+        example: 1
+        type: integer
+      votes:
+        allOf:
+        - $ref: '#/definitions/posts.Votes'
+        description: List of all the votes put by users on the post
+    type: object
+  posts.PostCategory:
+    description: PostCategory is an integer representing the category to which post
+      belongs
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    type: integer
+    x-enum-varnames:
+    - Music
+    - Funny
+    - Videos
+    - Programming
+    - News
+    - Fashion
+  posts.PostComment:
+    description: PostComment contains all information about a specific comment on
+      a Post
+    properties:
+      author:
+        $ref: '#/definitions/jwt.TokenPayload'
+      body:
+        description: Content of the comment
+        example: Some comment body example
+        minLength: 4
+        type: string
+      created:
+        description: Date the comment was created
+        example: "2006-01-02T15:04:05.999Z"
+        format: date-time
+        type: string
+      id:
+        example: 12345678-9abc-def1-2345-6789abcdef12
+        maxLength: 36
+        minLength: 36
+        type: string
+    type: object
+  posts.PostPayload:
+    description: PostPayload contains the necessary information to create a post
+    properties:
+      category:
+        allOf:
+        - $ref: '#/definitions/posts.PostCategory'
+        description: Number of the category to which the Post belongs
+        example: 0
+      text:
+        description: Content of the Post
+        example: Awesome text
+        minLength: 4
+        type: string
+      title:
+        example: Awesome title
+        type: string
+      type:
+        allOf:
+        - $ref: '#/definitions/posts.PostType'
+        description: link or text
+      url:
+        example: http://localhost:8080/
+        type: string
+    type: object
+  posts.PostType:
+    description: PostType is an integer(0 or 1) representing the type of the Post
+    enum:
+    - 0
+    - 1
+    type: integer
+    x-enum-varnames:
+    - WithLink
+    - WithText
+  posts.PostVote:
+    description: PostVote is a structure storing user id and his/her Vote
+    properties:
+      user:
+        description: ID of the user who left the comment
+        example: 12345678-9abc-def1-2345-6789abcdef12
+        maxLength: 36
+        minLength: 36
+        type: string
+      vote:
+        allOf:
+        - $ref: '#/definitions/posts.Vote'
+        example: -1
+    type: object
+  posts.Vote:
+    description: Vote is an integer(1 or -1) representing the user's reaction to the
+      Post
+    enum:
+    - -1
+    - 1
+    type: integer
+    x-enum-varnames:
+    - downVote
+    - upVote
+  posts.Votes:
+    additionalProperties:
+      $ref: '#/definitions/posts.PostVote'
+    type: object
+  users.AuthUserInfo:
+    description: AuthUserInfo stores User credentials contained in the JWT Session
+      token.
+    properties:
+      password:
+        example: want_pizza
+        format: password
+        minLength: 8
+        type: string
+      username:
+        example: Valery_Albertovich
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8081
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Basic restfull api for reddit-clone backend.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Reddit-Clone API
+  version: "1.0"
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Login via login and password in reddit-clone app
+      operationId: login-user
+      parameters:
+      - description: User credentials for authentication
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/users.AuthUserInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User authorized successfully
+          schema:
+            $ref: '#/definitions/jwt.Session'
+        "400":
+          description: Bad request
+        "401":
+          description: Bad login or password
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      summary: Login to your account
+      tags:
+      - auth
+  /post/{POST_ID}:
+    delete:
+      description: Delete a specific post by its id
+      operationId: delete-post
+      parameters:
+      - description: Post uuid
+        in: path
+        maxLength: 36
+        minLength: 36
+        name: POST_ID
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Post successfully deleted
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "400":
+          description: Bad post id
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "404":
+          description: No posts with the provided id were found
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete a post
+      tags:
+      - managing-posts
+    get:
+      description: Get information on a specific post by id
+      operationId: get-post-by-id
+      parameters:
+      - description: Post uuid
+        in: path
+        maxLength: 36
+        minLength: 36
+        name: POST_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Post successfully received
+          schema:
+            $ref: '#/definitions/posts.Post'
+        "400":
+          description: Bad post id
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "404":
+          description: No posts with the provided id were found
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      summary: Get a certain post
+      tags:
+      - getting-posts
+  /post/{POST_ID}/downvote:
+    get:
+      description: Decrease post rating by 1 vote
+      operationId: downvote-post
+      parameters:
+      - description: Post uuid
+        in: path
+        maxLength: 36
+        minLength: 36
+        name: POST_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully downvoted
+          schema:
+            $ref: '#/definitions/posts.Post'
+        "400":
+          description: Bad post id
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "404":
+          description: No posts with the provided id were found
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      security:
+      - ApiKeyAuth: []
+      summary: Vote down on a post
+      tags:
+      - voting-posts
+  /post/{POST_ID}/unvote:
+    get:
+      description: Withdraw your vote from the post
+      operationId: unvote-post
+      parameters:
+      - description: Post uuid
+        in: path
+        maxLength: 36
+        minLength: 36
+        name: POST_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully unvoted
+          schema:
+            $ref: '#/definitions/posts.Post'
+        "400":
+          description: Bad post id
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "404":
+          description: No posts with the provided id were found
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      security:
+      - ApiKeyAuth: []
+      summary: Cancel your vote
+      tags:
+      - voting-posts
+  /post/{POST_ID}/upvote:
+    get:
+      description: Increase post rating by 1 vote
+      operationId: upvote-post
+      parameters:
+      - description: Post uuid
+        in: path
+        maxLength: 36
+        minLength: 36
+        name: POST_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully upvoted
+          schema:
+            $ref: '#/definitions/posts.Post'
+        "400":
+          description: Bad post id
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "404":
+          description: No posts with the provided id were found
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      security:
+      - ApiKeyAuth: []
+      summary: Vote up on a post
+      tags:
+      - voting-posts
+  /posts/:
+    get:
+      description: Get a list of posts of all users and threads
+      operationId: get-all-posts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Posts successfully received
+          schema:
+            items:
+              $ref: '#/definitions/posts.Post'
+            type: array
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      summary: Get all posts
+      tags:
+      - getting-posts
+    post:
+      consumes:
+      - application/json
+      description: Create a post of a specific type, category, and content
+      operationId: create-post
+      parameters:
+      - description: Post data
+        in: body
+        name: post_payload
+        required: true
+        schema:
+          $ref: '#/definitions/posts.PostPayload'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Post successfully created
+          schema:
+            $ref: '#/definitions/posts.Post'
+        "400":
+          description: Bad payload
+        "422":
+          description: Bad content
+          schema:
+            $ref: '#/definitions/errs.ComplexErrArr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      security:
+      - ApiKeyAuth: []
+      summary: Create a post
+      tags:
+      - managing-posts
+  /posts/{CATEGORY_NAME}:
+    get:
+      description: Get all posts belonging to a certain category
+      operationId: get-posts-by-category
+      parameters:
+      - description: Category name
+        in: path
+        name: CATEGORY_NAME
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Posts successfully received
+          schema:
+            items:
+              $ref: '#/definitions/posts.Post'
+            type: array
+        "400":
+          description: Bad category(doesn't exist)
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      summary: Get posts by category
+      tags:
+      - getting-posts
+  /posts/{POST_ID}:
+    post:
+      consumes:
+      - application/json
+      description: Leave a comment under a certain post
+      operationId: add-comment
+      parameters:
+      - description: Comment data
+        in: body
+        name: comment_payload
+        required: true
+        schema:
+          $ref: '#/definitions/posts.Comment'
+      - description: Post uuid
+        in: path
+        maxLength: 36
+        minLength: 36
+        name: POST_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Comment successfully left
+          schema:
+            $ref: '#/definitions/posts.Post'
+        "400":
+          description: Bad payload
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "404":
+          description: No posts with the provided id were found
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "422":
+          description: Bad content
+          schema:
+            $ref: '#/definitions/errs.ComplexErrArr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      security:
+      - ApiKeyAuth: []
+      summary: Comment on the post
+      tags:
+      - commenting-posts
+  /posts/{POST_ID}/{COMMENT_ID}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a certain comment on a certain post
+      operationId: delete-comment
+      parameters:
+      - description: Post uuid
+        in: path
+        maxLength: 36
+        minLength: 36
+        name: POST_ID
+        required: true
+        type: string
+      - description: Comment uuid
+        in: path
+        maxLength: 36
+        minLength: 36
+        name: COMMENT_ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Comment successfully deleted
+          schema:
+            $ref: '#/definitions/posts.Post'
+        "400":
+          description: Bad uuid
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "404":
+          description: No posts or comment with the provided id were found
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete comment
+      tags:
+      - commenting-posts
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Register in reddit-clone app
+      operationId: register-user
+      parameters:
+      - description: User credentials for registration
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/users.AuthUserInfo'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: User registered successfully
+          schema:
+            $ref: '#/definitions/jwt.Session'
+        "400":
+          description: Bad request
+        "422":
+          description: User already exists
+          schema:
+            $ref: '#/definitions/errs.ComplexErrArr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      summary: Register a new user
+      tags:
+      - auth
+  /user/{USER_LOGIN}:
+    get:
+      description: Get all posts of a certain user by his/her username
+      operationId: get-posts-by-user
+      parameters:
+      - description: Username of user
+        in: path
+        name: USER_LOGIN
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Posts successfully received
+          schema:
+            items:
+              $ref: '#/definitions/posts.Post'
+            type: array
+        "400":
+          description: Bad username(doesn't exist)
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      summary: Get posts by user
+      tags:
+      - getting-posts
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
