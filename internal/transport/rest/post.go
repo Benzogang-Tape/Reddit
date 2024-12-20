@@ -87,7 +87,7 @@ func (p *PostHandler) GetAllPosts(w http.ResponseWriter, r *http.Request) {
 //	@Failure		400				"Bad payload"
 //	@Failure		422				{object}	errs.ComplexErrArr	"Bad content"
 //	@Failure		500				{object}	errs.SimpleErr		"Internal server error"
-//	@Router			/posts/ [post]
+//	@Router			/posts [post]
 func (p *PostHandler) CreatePost(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	body, err := io.ReadAll(r.Body)

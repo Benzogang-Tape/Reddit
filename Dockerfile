@@ -27,12 +27,12 @@ RUN mkdir /docs
 
 COPY --from=build_stage /bin/$APP_NAME .
 
-RUN chmod +x $APP_NAME
+RUN chmod +x ./$APP_NAME
 
 #EXPOSE $PORT
 #
-#ENTRYPOINT ["./$APP_NAME"]
+#ENTRYPOINT ./$APP_NAME
 
 EXPOSE $PORT
 
-CMD [ "./$APP_NAME" ]
+CMD ["sh", "-c", "./$APP_NAME" ]
