@@ -1,0 +1,4833 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>demo: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/Benzogang-Tape/Reddit/cmd/demo/demo.go (0.0%)</option>
+				
+				<option value="file1">github.com/Benzogang-Tape/Reddit/cmd/redditclone/redditclone.go (0.0%)</option>
+				
+				<option value="file2">github.com/Benzogang-Tape/Reddit/docs/docs.go (100.0%)</option>
+				
+				<option value="file3">github.com/Benzogang-Tape/Reddit/internal/config/config.go (0.0%)</option>
+				
+				<option value="file4">github.com/Benzogang-Tape/Reddit/internal/models/errs/errors.go (33.3%)</option>
+				
+				<option value="file5">github.com/Benzogang-Tape/Reddit/internal/models/httpresp/http_response.go (50.0%)</option>
+				
+				<option value="file6">github.com/Benzogang-Tape/Reddit/internal/models/jwt/secret_conf.go (0.0%)</option>
+				
+				<option value="file7">github.com/Benzogang-Tape/Reddit/internal/models/jwt/session.go (0.0%)</option>
+				
+				<option value="file8">github.com/Benzogang-Tape/Reddit/internal/models/posts/post.go (94.5%)</option>
+				
+				<option value="file9">github.com/Benzogang-Tape/Reddit/internal/models/posts/post_attributes.go (71.4%)</option>
+				
+				<option value="file10">github.com/Benzogang-Tape/Reddit/internal/models/users/user.go (100.0%)</option>
+				
+				<option value="file11">github.com/Benzogang-Tape/Reddit/internal/service/post.go (0.0%)</option>
+				
+				<option value="file12">github.com/Benzogang-Tape/Reddit/internal/service/session.go (0.0%)</option>
+				
+				<option value="file13">github.com/Benzogang-Tape/Reddit/internal/service/user.go (0.0%)</option>
+				
+				<option value="file14">github.com/Benzogang-Tape/Reddit/internal/storage/inmem/posts_repo.go (0.0%)</option>
+				
+				<option value="file15">github.com/Benzogang-Tape/Reddit/internal/storage/inmem/session_repo.go (0.0%)</option>
+				
+				<option value="file16">github.com/Benzogang-Tape/Reddit/internal/storage/inmem/users_repo.go (0.0%)</option>
+				
+				<option value="file17">github.com/Benzogang-Tape/Reddit/internal/storage/mocks/mongoDB_abstraction_mock.go (58.3%)</option>
+				
+				<option value="file18">github.com/Benzogang-Tape/Reddit/internal/storage/mocks/posts_repo_mongoDB_mock.go (100.0%)</option>
+				
+				<option value="file19">github.com/Benzogang-Tape/Reddit/internal/storage/mocks/sessions_repo_redis_mock.go (30.6%)</option>
+				
+				<option value="file20">github.com/Benzogang-Tape/Reddit/internal/storage/mocks/users_repo_mySQL_mock.go (100.0%)</option>
+				
+				<option value="file21">github.com/Benzogang-Tape/Reddit/internal/storage/mongoDB_abstraction.go (31.2%)</option>
+				
+				<option value="file22">github.com/Benzogang-Tape/Reddit/internal/storage/posts_repo_mongoDB.go (100.0%)</option>
+				
+				<option value="file23">github.com/Benzogang-Tape/Reddit/internal/storage/sessions_repo_redis.go (0.0%)</option>
+				
+				<option value="file24">github.com/Benzogang-Tape/Reddit/internal/storage/users_repo_mySQL.go (100.0%)</option>
+				
+				<option value="file25">github.com/Benzogang-Tape/Reddit/internal/transport/middleware/jwt_auth.go (0.0%)</option>
+				
+				<option value="file26">github.com/Benzogang-Tape/Reddit/internal/transport/middleware/recover.go (0.0%)</option>
+				
+				<option value="file27">github.com/Benzogang-Tape/Reddit/internal/transport/rest/post.go (100.0%)</option>
+				
+				<option value="file28">github.com/Benzogang-Tape/Reddit/internal/transport/rest/router.go (0.0%)</option>
+				
+				<option value="file29">github.com/Benzogang-Tape/Reddit/internal/transport/rest/send_response.go (68.2%)</option>
+				
+				<option value="file30">github.com/Benzogang-Tape/Reddit/internal/transport/rest/user.go (100.0%)</option>
+				
+				<option value="file31">github.com/Benzogang-Tape/Reddit/pkg/middleware/accesslog.go (0.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package main
+
+import (
+        "flag"
+        "fmt"
+        "log"
+        "net/http"
+        "os"
+
+        "go.uber.org/zap"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        "github.com/Benzogang-Tape/Reddit/internal/service"
+        "github.com/Benzogang-Tape/Reddit/internal/storage/inmem"
+        "github.com/Benzogang-Tape/Reddit/internal/transport/rest"
+)
+
+var port = flag.Int("port", 8081, "HTTP port")
+
+func init() <span class="cov0" title="0">{
+        os.Setenv("JWT_SECRET", "super secret key")
+}</span>
+
+//        @title                        Reddit-Clone API
+//        @version                1.0
+//        @description        Basic restfull api for reddit-clone backend.
+//        @termsOfService        http://swagger.io/terms/
+
+//        @contact.name        API Support
+//        @contact.url        http://www.swagger.io/support
+//        @contact.email        support@swagger.io
+
+//        @license.name        Apache 2.0
+//        @license.url        http://www.apache.org/licenses/LICENSE-2.0.html
+
+//        @host                localhost:8081
+//        @BasePath        /api
+
+//        @securityDefinitions.apikey        ApiKeyAuth
+//        @in                                                        header
+//        @name                                                Authorization
+
+// @externalDocs.description        OpenAPI
+// @externalDocs.url                        https://swagger.io/resources/open-api/
+func main() <span class="cov0" title="0">{
+        flag.Parse()
+
+        if err := jwt.SetJWTSecret(os.Getenv("JWT_SECRET")); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+
+        <span class="cov0" title="0">zapLogger, err := zap.NewProduction()
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalln("Logger init error")
+        }</span>
+        <span class="cov0" title="0">defer zapLogger.Sync() //nolint:errcheck
+        logger := zapLogger.Sugar()
+
+        sessionRepo := inmem.NewSessionRepo()
+        sessionHandler := service.NewSessionHandler(sessionRepo)
+
+        userStorage := inmem.NewUserRepo()
+        userHandler := service.NewUserHandler(userStorage)
+        u := rest.NewUserHandler(userHandler, sessionHandler, logger)
+
+        postStorage := inmem.NewPostRepo()
+        postHandler := service.NewPostHandler(postStorage, postStorage)
+        p := rest.NewPostHandler(postHandler, logger)
+
+        router := rest.NewAppRouter(u, p).InitRouter(logger)
+
+        addr := fmt.Sprintf(":%d", *port)
+        logger.Infow(fmt.Sprintf("Starting server on %s", addr))
+        log.Panic(http.ListenAndServe(addr, router))</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package main
+
+import (
+        "context"
+        "database/sql"
+        "fmt"
+        "log"
+        "net/http"
+
+        "github.com/go-redis/redis"
+        _ "github.com/go-sql-driver/mysql"
+        "go.mongodb.org/mongo-driver/mongo"
+        "go.mongodb.org/mongo-driver/mongo/options"
+        "go.uber.org/zap"
+
+        "github.com/Benzogang-Tape/Reddit/internal/config"
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        "github.com/Benzogang-Tape/Reddit/internal/service"
+        "github.com/Benzogang-Tape/Reddit/internal/storage"
+        "github.com/Benzogang-Tape/Reddit/internal/transport/rest"
+)
+
+//        @title                        Reddit-Clone API
+//        @version                1.0
+//        @description        Basic restfull api for reddit-clone backend.
+//        @termsOfService        http://swagger.io/terms/
+
+//        @contact.name        API Support
+//        @contact.url        http://www.swagger.io/support
+//        @contact.email        support@swagger.io
+
+//        @license.name        Apache 2.0
+//        @license.url        http://www.apache.org/licenses/LICENSE-2.0.html
+
+//        @host                localhost:8081
+//        @BasePath        /api
+
+//        @securityDefinitions.apikey        ApiKeyAuth
+//        @in                                                        header
+//        @name                                                Authorization
+
+// @externalDocs.description        OpenAPI
+// @externalDocs.url                        https://swagger.io/resources/open-api/
+func main() <span class="cov0" title="0">{
+        v, err := config.ReadConfig()
+        if err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+
+        <span class="cov0" title="0">if err = jwt.SetJWTSecret(v.GetString("jwt.secret")); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+
+        <span class="cov0" title="0">dsn := fmt.Sprintf(
+                "%s:%s@tcp(%s:%s)/%s?%s",
+                v.GetString("mysql.user"),
+                v.GetString("mysql.password"),
+                v.GetString("mysql.host"),
+                v.GetString("mysql.port"),
+                v.GetString("mysql.database"),
+                v.GetString("mysql.params"),
+        )
+
+        fmt.Println(dsn)
+        usersDB, err := sql.Open("mysql", dsn)
+        if err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+
+        <span class="cov0" title="0">err = usersDB.Ping()
+        if err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+
+        <span class="cov0" title="0">ctx := context.Background()
+        sess, err := mongo.Connect(ctx, options.Client().ApplyURI(fmt.Sprintf(
+                "%s%s",
+                v.GetString("mongo.uri"),
+                v.GetString("mongo.host"),
+        )))
+
+        if err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+
+        <span class="cov0" title="0">postsDB := sess.Database(v.GetString("mongo.initdb.database")).Collection(v.GetString("mongo.collection.posts"))
+
+        sessionDB := redis.NewClient(&amp;redis.Options{
+                Addr:     fmt.Sprintf("%s:%s", v.GetString("redis.host"), v.GetString("redis.port")),
+                Password: v.GetString("redis.password"),
+                DB:       0,
+        })
+
+        if _, err = sessionDB.Ping().Result(); err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+
+        <span class="cov0" title="0">zapLogger, err := zap.NewProduction()
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalln("Logger init error")
+        }</span>
+        <span class="cov0" title="0">defer zapLogger.Sync() //nolint:errcheck
+        logger := zapLogger.Sugar()
+
+        sessionStorage := storage.NewSessionRepoRedis(sessionDB)
+        sessionHandler := service.NewSessionHandler(sessionStorage)
+
+        userStorage := storage.NewUserRepoMySQL(usersDB)
+        userHandler := service.NewUserHandler(userStorage)
+        u := rest.NewUserHandler(userHandler, sessionHandler, logger)
+
+        mongoAbstraction := storage.NewMongoCollection(postsDB)
+        postStorage := storage.NewPostRepoMongoDB(mongoAbstraction)
+        postHandler := service.NewPostHandler(postStorage, postStorage)
+        p := rest.NewPostHandler(postHandler, logger)
+
+        router := rest.NewAppRouter(u, p).InitRouter(logger)
+
+        addr := fmt.Sprintf(":%s", v.GetString("app.port"))
+        logger.Infow(fmt.Sprintf("Starting server on %s", addr))
+        log.Panic(http.ListenAndServe(addr, router))</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">// Package docs Code generated by swaggo/swag. DO NOT EDIT
+package docs
+
+import "github.com/swaggo/swag"
+
+const docTemplate = `{
+    "schemes": {{ marshal .Schemes }},
+    "swagger": "2.0",
+    "info": {
+        "description": "{{escape .Description}}",
+        "title": "{{.Title}}",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "{{.Version}}"
+    },
+    "host": "{{.Host}}",
+    "basePath": "{{.BasePath}}",
+    "paths": {
+        "/login": {
+            "post": {
+                "description": "Login via login and password in reddit-clone app",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login to your account",
+                "operationId": "login-user",
+                "parameters": [
+                    {
+                        "description": "User credentials for authentication",
+                        "name": "credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/users.AuthUserInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User authorized successfully",
+                        "schema": {
+                            "$ref": "#/definitions/jwt.Session"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Bad login or password",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/post/{POST_ID}": {
+            "get": {
+                "description": "Get information on a specific post by id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "getting-posts"
+                ],
+                "summary": "Get a certain post",
+                "operationId": "get-post-by-id",
+                "parameters": [
+                    {
+                        "maxLength": 36,
+                        "minLength": 36,
+                        "type": "string",
+                        "description": "Post uuid",
+                        "name": "POST_ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post successfully received",
+                        "schema": {
+                            "$ref": "#/definitions/posts.Post"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad post id",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "404": {
+                        "description": "No posts with the provided id were found",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Delete a specific post by its id",
+                "tags": [
+                    "managing-posts"
+                ],
+                "summary": "Delete a post",
+                "operationId": "delete-post",
+                "parameters": [
+                    {
+                        "maxLength": 36,
+                        "minLength": 36,
+                        "type": "string",
+                        "description": "Post uuid",
+                        "name": "POST_ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post successfully deleted",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad post id",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "404": {
+                        "description": "No posts with the provided id were found",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/post/{POST_ID}/downvote": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Decrease post rating by 1 vote",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "voting-posts"
+                ],
+                "summary": "Vote down on a post",
+                "operationId": "downvote-post",
+                "parameters": [
+                    {
+                        "maxLength": 36,
+                        "minLength": 36,
+                        "type": "string",
+                        "description": "Post uuid",
+                        "name": "POST_ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully downvoted",
+                        "schema": {
+                            "$ref": "#/definitions/posts.Post"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad post id",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "404": {
+                        "description": "No posts with the provided id were found",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/post/{POST_ID}/unvote": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Withdraw your vote from the post",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "voting-posts"
+                ],
+                "summary": "Cancel your vote",
+                "operationId": "unvote-post",
+                "parameters": [
+                    {
+                        "maxLength": 36,
+                        "minLength": 36,
+                        "type": "string",
+                        "description": "Post uuid",
+                        "name": "POST_ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully unvoted",
+                        "schema": {
+                            "$ref": "#/definitions/posts.Post"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad post id",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "404": {
+                        "description": "No posts with the provided id were found",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/post/{POST_ID}/upvote": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Increase post rating by 1 vote",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "voting-posts"
+                ],
+                "summary": "Vote up on a post",
+                "operationId": "upvote-post",
+                "parameters": [
+                    {
+                        "maxLength": 36,
+                        "minLength": 36,
+                        "type": "string",
+                        "description": "Post uuid",
+                        "name": "POST_ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully upvoted",
+                        "schema": {
+                            "$ref": "#/definitions/posts.Post"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad post id",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "404": {
+                        "description": "No posts with the provided id were found",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/": {
+            "get": {
+                "description": "Get a list of posts of all users and threads",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "getting-posts"
+                ],
+                "summary": "Get all posts",
+                "operationId": "get-all-posts",
+                "responses": {
+                    "200": {
+                        "description": "Posts successfully received",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/posts.Post"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Create a post of a specific type, category, and content",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "managing-posts"
+                ],
+                "summary": "Create a post",
+                "operationId": "create-post",
+                "parameters": [
+                    {
+                        "description": "Post data",
+                        "name": "post_payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/posts.PostPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Post successfully created",
+                        "schema": {
+                            "$ref": "#/definitions/posts.Post"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad payload"
+                    },
+                    "422": {
+                        "description": "Bad content",
+                        "schema": {
+                            "$ref": "#/definitions/errs.ComplexErrArr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{CATEGORY_NAME}": {
+            "get": {
+                "description": "Get all posts belonging to a certain category",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "getting-posts"
+                ],
+                "summary": "Get posts by category",
+                "operationId": "get-posts-by-category",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Category name",
+                        "name": "CATEGORY_NAME",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Posts successfully received",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/posts.Post"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad category(doesn't exist)",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{POST_ID}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Leave a comment under a certain post",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "commenting-posts"
+                ],
+                "summary": "Comment on the post",
+                "operationId": "add-comment",
+                "parameters": [
+                    {
+                        "description": "Comment data",
+                        "name": "comment_payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/posts.Comment"
+                        }
+                    },
+                    {
+                        "maxLength": 36,
+                        "minLength": 36,
+                        "type": "string",
+                        "description": "Post uuid",
+                        "name": "POST_ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Comment successfully left",
+                        "schema": {
+                            "$ref": "#/definitions/posts.Post"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad payload",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "404": {
+                        "description": "No posts with the provided id were found",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "422": {
+                        "description": "Bad content",
+                        "schema": {
+                            "$ref": "#/definitions/errs.ComplexErrArr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{POST_ID}/{COMMENT_ID}": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Delete a certain comment on a certain post",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "commenting-posts"
+                ],
+                "summary": "Delete comment",
+                "operationId": "delete-comment",
+                "parameters": [
+                    {
+                        "maxLength": 36,
+                        "minLength": 36,
+                        "type": "string",
+                        "description": "Post uuid",
+                        "name": "POST_ID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 36,
+                        "minLength": 36,
+                        "type": "string",
+                        "description": "Comment uuid",
+                        "name": "COMMENT_ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Comment successfully deleted",
+                        "schema": {
+                            "$ref": "#/definitions/posts.Post"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad uuid",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "404": {
+                        "description": "No posts or comment with the provided id were found",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "description": "Register in reddit-clone app",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Register a new user",
+                "operationId": "register-user",
+                "parameters": [
+                    {
+                        "description": "User credentials for registration",
+                        "name": "credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/users.AuthUserInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully",
+                        "schema": {
+                            "$ref": "#/definitions/jwt.Session"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "422": {
+                        "description": "User already exists",
+                        "schema": {
+                            "$ref": "#/definitions/errs.ComplexErrArr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{USER_LOGIN}": {
+            "get": {
+                "description": "Get all posts of a certain user by his/her username",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "getting-posts"
+                ],
+                "summary": "Get posts by user",
+                "operationId": "get-posts-by-user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username of user",
+                        "name": "USER_LOGIN",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Posts successfully received",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/posts.Post"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad username(doesn't exist)",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "errs.ComplexErr": {
+            "description": "ComplexErr contains a more detailed description of the error, including the location and cause of the error",
+            "type": "object",
+            "properties": {
+                "location": {},
+                "msg": {},
+                "param": {},
+                "value": {}
+            }
+        },
+        "errs.ComplexErrArr": {
+            "description": "ComplexErrArr is an array of ComplexErr returned in case of a non-obvious error",
+            "type": "object",
+            "properties": {
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/errs.ComplexErr"
+                    }
+                }
+            }
+        },
+        "errs.SimpleErr": {
+            "description": "SimpleErr stores a brief description of an error",
+            "type": "object",
+            "properties": {
+                "message": {}
+            }
+        },
+        "jwt.Session": {
+            "description": "Session stores the JWT token of the session",
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzUyMzU3ODAsImlhdCI6MTczNDYzMDk4MCwidXNlciI6eyJ1c2VybmFtZSI6InRlc3RfdXNlciIsImlkIjoiZDNkNzc1YmEtYTFlZS00MTEwLTkwOTktMTA0ZDVkYzFkYzQ2In19.I_3_yHlH1QUuKavtx8xVN_IRFMYXg3dYumzSrImA_NM"
+                }
+            }
+        },
+        "jwt.TokenPayload": {
+            "description": "TokenPayload stores the User payload contained in the JWT Session token",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "User id",
+                    "type": "string",
+                    "maxLength": 36,
+                    "minLength": 36,
+                    "example": "12345678-9abc-def1-2345-6789abcdef12"
+                },
+                "username": {
+                    "description": "User login",
+                    "type": "string",
+                    "example": "test_user"
+                }
+            }
+        },
+        "posts.Comment": {
+            "description": "Comment contains the text of the comment on Post",
+            "type": "object",
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "minLength": 4,
+                    "example": "Some comment body example"
+                }
+            }
+        },
+        "posts.Post": {
+            "description": "Post Contains all the information about a particular post in the app",
+            "type": "object",
+            "properties": {
+                "author": {
+                    "description": "User who created the Post",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/jwt.TokenPayload"
+                        }
+                    ]
+                },
+                "category": {
+                    "description": "Number of the category to which the Post belongs",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/posts.PostCategory"
+                        }
+                    ],
+                    "example": 0
+                },
+                "comments": {
+                    "description": "List of all comments left by users under the post",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/posts.PostComment"
+                    }
+                },
+                "created": {
+                    "description": "Date the Post was created",
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2006-01-02T15:04:05.999Z"
+                },
+                "id": {
+                    "type": "string",
+                    "maxLength": 36,
+                    "minLength": 36,
+                    "example": "12345678-9abc-def1-2345-6789abcdef12"
+                },
+                "score": {
+                    "description": "The overall balance of the post's votes",
+                    "type": "integer",
+                    "example": -1
+                },
+                "text": {
+                    "description": "Content of the Post",
+                    "type": "string",
+                    "minLength": 4,
+                    "example": "Awesome text"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Awesome title"
+                },
+                "type": {
+                    "description": "Post with text(1) or with a link(0)",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/posts.PostType"
+                        }
+                    ],
+                    "example": 1
+                },
+                "upvotePercentage": {
+                    "description": "Percentage of positive Votes to Post",
+                    "type": "integer",
+                    "maximum": 100,
+                    "minimum": 0,
+                    "example": 75
+                },
+                "url": {
+                    "type": "string",
+                    "example": "http://localhost:8080/"
+                },
+                "views": {
+                    "description": "How many times the post has been viewed by users",
+                    "type": "integer",
+                    "example": 1
+                },
+                "votes": {
+                    "description": "List of all the votes put by users on the post",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/posts.Votes"
+                        }
+                    ]
+                }
+            }
+        },
+        "posts.PostCategory": {
+            "description": "PostCategory is an integer representing the category to which post belongs",
+            "type": "integer",
+            "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "x-enum-varnames": [
+                "Music",
+                "Funny",
+                "Videos",
+                "Programming",
+                "News",
+                "Fashion"
+            ]
+        },
+        "posts.PostComment": {
+            "description": "PostComment contains all information about a specific comment on a Post",
+            "type": "object",
+            "properties": {
+                "author": {
+                    "$ref": "#/definitions/jwt.TokenPayload"
+                },
+                "body": {
+                    "description": "Content of the comment",
+                    "type": "string",
+                    "minLength": 4,
+                    "example": "Some comment body example"
+                },
+                "created": {
+                    "description": "Date the comment was created",
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2006-01-02T15:04:05.999Z"
+                },
+                "id": {
+                    "type": "string",
+                    "maxLength": 36,
+                    "minLength": 36,
+                    "example": "12345678-9abc-def1-2345-6789abcdef12"
+                }
+            }
+        },
+        "posts.PostPayload": {
+            "description": "PostPayload contains the necessary information to create a post",
+            "type": "object",
+            "properties": {
+                "category": {
+                    "description": "Number of the category to which the Post belongs",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/posts.PostCategory"
+                        }
+                    ],
+                    "example": 0
+                },
+                "text": {
+                    "description": "Content of the Post",
+                    "type": "string",
+                    "minLength": 4,
+                    "example": "Awesome text"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Awesome title"
+                },
+                "type": {
+                    "description": "link or text",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/posts.PostType"
+                        }
+                    ]
+                },
+                "url": {
+                    "type": "string",
+                    "example": "http://localhost:8080/"
+                }
+            }
+        },
+        "posts.PostType": {
+            "description": "PostType is an integer(0 or 1) representing the type of the Post",
+            "type": "integer",
+            "enum": [
+                0,
+                1
+            ],
+            "x-enum-varnames": [
+                "WithLink",
+                "WithText"
+            ]
+        },
+        "posts.PostVote": {
+            "description": "PostVote is a structure storing user id and his/her Vote",
+            "type": "object",
+            "properties": {
+                "user": {
+                    "description": "ID of the user who left the comment",
+                    "type": "string",
+                    "maxLength": 36,
+                    "minLength": 36,
+                    "example": "12345678-9abc-def1-2345-6789abcdef12"
+                },
+                "vote": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/posts.Vote"
+                        }
+                    ],
+                    "example": -1
+                }
+            }
+        },
+        "posts.Vote": {
+            "description": "Vote is an integer(1 or -1) representing the user's reaction to the Post",
+            "type": "integer",
+            "enum": [
+                -1,
+                1
+            ],
+            "x-enum-varnames": [
+                "downVote",
+                "upVote"
+            ]
+        },
+        "posts.Votes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/definitions/posts.PostVote"
+            }
+        },
+        "users.AuthUserInfo": {
+            "description": "AuthUserInfo stores User credentials contained in the JWT Session token.",
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "format": "password",
+                    "minLength": 8,
+                    "example": "want_pizza"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "Valery_Albertovich"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "externalDocs": {
+        "description": "OpenAPI",
+        "url": "https://swagger.io/resources/open-api/"
+    }
+}`
+
+// SwaggerInfo holds exported Swagger Info so clients can modify it
+var SwaggerInfo = &amp;swag.Spec{
+        Version:          "1.0",
+        Host:             "localhost:8081",
+        BasePath:         "/api",
+        Schemes:          []string{},
+        Title:            "Reddit-Clone API",
+        Description:      "Basic restfull api for reddit-clone backend.",
+        InfoInstanceName: "swagger",
+        SwaggerTemplate:  docTemplate,
+        LeftDelim:        "{{",
+        RightDelim:       "}}",
+}
+
+func init() <span class="cov8" title="1">{
+        swag.Register(SwaggerInfo.InstanceName(), SwaggerInfo)
+}</span>
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package config
+
+import (
+        "fmt"
+        "strings"
+
+        "github.com/spf13/viper"
+)
+
+const (
+        configFileName = "config"
+        configFileExt  = "yaml"
+        configFilePath = "."
+)
+
+func ReadConfig() (*viper.Viper, error) <span class="cov0" title="0">{
+        v := viper.New()
+        v.SetConfigName(configFileName)
+        v.AddConfigPath(configFilePath)
+        v.SetConfigType(configFileExt)
+
+        v.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+
+        if err := v.ReadInConfig(); err != nil </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("error reading config file, %s", err)
+        }</span>
+
+        <span class="cov0" title="0">v.AutomaticEnv()
+
+        return v, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package errs
+
+import (
+        "encoding/json"
+        "errors"
+        "fmt"
+        "strings"
+)
+
+var (
+        ErrNoUser              = errors.New("user not found")
+        ErrNoSession           = errors.New("session not found")
+        ErrInternalServerError = errors.New("internal server error")
+        ErrBadPass             = errors.New("invalid password")
+        ErrUserExists          = errors.New("username already exist")
+        ErrBadToken            = errors.New("bad token")
+        ErrNoPayload           = errors.New("no payload")
+        ErrBadPayload          = errors.New("bad payload")
+        ErrInvalidURL          = errors.New("url is invalid")
+        ErrResponseError       = errors.New("response generation error")
+        ErrPostNotFound        = errors.New("post not found")
+        ErrCommentNotFound     = errors.New("comment not found")
+        ErrBadID               = errors.New("bad id")
+        ErrInvalidPostID       = errors.New("invalid post id")
+        ErrInvalidCommentID    = errors.New("invalid comment id")
+        ErrInvalidCategory     = errors.New("invalid category")
+        ErrInvalidPostType     = errors.New("invalid post type")
+        ErrVoteNotFound        = errors.New("no votes from the requested user")
+        ErrBadCommentBody      = errors.New("comment body is required")
+        ErrUnknownPayload      = errors.New("unknown payload")
+        ErrUnknownError        = errors.New("unknown error")
+)
+
+type RespError interface {
+        Marshal() ([]byte, error)
+        Error() string
+}
+
+// SimpleErr model info
+//
+// @Description SimpleErr stores a brief description of an error
+type SimpleErr struct {
+        Message any `json:"message"`
+}
+
+// ComplexErr model info
+//
+// @Description ComplexErr contains a more detailed description of the error, including the location and cause of the error
+type ComplexErr struct {
+        Location any `json:"location"`
+        Param    any `json:"param"`
+        Value    any `json:"value"`
+        Msg      any `json:"msg"`
+}
+
+// ComplexErrArr model info
+//
+// @Description ComplexErrArr is an array of ComplexErr returned in case of a non-obvious error
+type ComplexErrArr struct {
+        Errs []ComplexErr `json:"errors"`
+}
+
+func (s SimpleErr) Marshal() ([]byte, error) <span class="cov8" title="1">{
+        return json.Marshal(s)
+}</span>
+
+func (s SimpleErr) Error() string <span class="cov0" title="0">{
+        return s.Message.(string)
+}</span>
+
+func (c ComplexErr) Marshal() ([]byte, error) <span class="cov0" title="0">{
+        complexErrs := ComplexErrArr{
+                Errs: []ComplexErr{c},
+        }
+
+        return json.Marshal(complexErrs)
+}</span>
+
+func (c ComplexErr) Error() string <span class="cov0" title="0">{
+        return fmt.Sprintf("location: %s\nparam: %s\nvalue: %s\nmsg: %s\n",
+                c.Location.(string),
+                c.Param.(string),
+                c.Value.(string),
+                c.Msg.(string),
+        )
+}</span>
+
+func (ca ComplexErrArr) Marshal() ([]byte, error) <span class="cov8" title="1">{
+        return json.Marshal(ca)
+}</span>
+
+func (ca ComplexErrArr) Error() string <span class="cov0" title="0">{
+        b := strings.Builder{}
+        for _, c := range ca.Errs </span><span class="cov0" title="0">{
+                fmt.Fprintf(&amp;b, "%s\n", c.Error())
+        }</span>
+
+        <span class="cov0" title="0">return b.String()</span>
+}
+
+func NewSimpleErr(message any) SimpleErr <span class="cov8" title="1">{
+        return SimpleErr{
+                Message: message,
+        }
+}</span>
+
+func NewComplexErrArr(err ...ComplexErr) ComplexErrArr <span class="cov8" title="1">{
+        return ComplexErrArr{
+                Errs: err,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">package httpresp
+
+type Response struct {
+        Data        any
+        StatusCode  int
+        ContentType string
+}
+
+type OptionFunc func(*Response)
+
+func WithStatusCode(code int) OptionFunc <span class="cov8" title="1">{
+        return func(r *Response) </span><span class="cov8" title="1">{
+                r.StatusCode = code
+        }</span>
+}
+
+func WithContentType(contentType string) OptionFunc <span class="cov0" title="0">{
+        return func(r *Response) </span><span class="cov0" title="0">{
+                r.ContentType = contentType
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file6" style="display: none">package jwt
+
+import (
+        "errors"
+)
+
+type favContextKey struct{}
+
+var (
+        errEmptySecret                  = errors.New("jwt secret is empty")
+        Payload           favContextKey = struct{}{}
+        secretKeyProvider func() []byte
+)
+
+func SetJWTSecret(secret string) error <span class="cov0" title="0">{
+        if secret == "" </span><span class="cov0" title="0">{
+                return errEmptySecret
+        }</span>
+
+        <span class="cov0" title="0">secretKeyProvider = func() []byte </span><span class="cov0" title="0">{
+                return []byte(secret)
+        }</span>
+
+        <span class="cov0" title="0">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">package jwt
+
+import (
+        "fmt"
+        "time"
+
+        jwt "github.com/dgrijalva/jwt-go"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+// Session model info
+//
+// @Description Session stores the JWT token of the session
+type Session struct {
+        Token string `json:"token" example:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzUyMzU3ODAsImlhdCI6MTczNDYzMDk4MCwidXNlciI6eyJ1c2VybmFtZSI6InRlc3RfdXNlciIsImlkIjoiZDNkNzc1YmEtYTFlZS00MTEwLTkwOTktMTA0ZDVkYzFkYzQ2In19.I_3_yHlH1QUuKavtx8xVN_IRFMYXg3dYumzSrImA_NM"`
+}
+
+// TokenPayload model info
+//
+// @Description TokenPayload stores the User payload contained in the JWT Session token
+type TokenPayload struct {
+        // User login
+        Login users.Username `json:"username" bson:"username" example:"test_user"`
+        // User id
+        ID users.ID `json:"id" bson:"uuid" example:"12345678-9abc-def1-2345-6789abcdef12" minLength:"36" maxLength:"36"`
+}
+
+const (
+        SessLifespan = 24 * time.Hour * 7
+)
+
+func NewSession(payload TokenPayload) (*Session, error) <span class="cov0" title="0">{
+        token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+                "user": payload,
+                "iat":  time.Now().Unix(),
+                "exp":  time.Now().Add(SessLifespan).Unix(),
+        })
+
+        tokenString, err := token.SignedString(secretKeyProvider())
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov0" title="0">return &amp;Session{
+                Token: tokenString,
+        }, nil</span>
+}
+
+func (s *Session) ValidateToken() (*TokenPayload, error) <span class="cov0" title="0">{
+        hashSecretGetter := func(token *jwt.Token) (any, error) </span><span class="cov0" title="0">{
+                method, ok := token.Method.(*jwt.SigningMethodHMAC)
+                if !ok || method.Alg() != "HS256" </span><span class="cov0" title="0">{
+                        return nil, fmt.Errorf("bad sign method")
+                }</span>
+                <span class="cov0" title="0">return secretKeyProvider(), nil</span>
+        }
+        <span class="cov0" title="0">token, err := jwt.Parse(s.Token, hashSecretGetter)
+        if err != nil || !token.Valid </span><span class="cov0" title="0">{
+                return nil, errs.ErrBadToken
+        }</span>
+
+        <span class="cov0" title="0">payload, ok := token.Claims.(jwt.MapClaims)
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errs.ErrNoPayload
+        }</span>
+        <span class="cov0" title="0">dataFromToken, ok := payload["user"].(map[string]any)
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errs.ErrBadToken
+        }</span>
+
+        <span class="cov0" title="0">return &amp;TokenPayload{
+                Login: users.Username(dataFromToken["username"].(string)),
+                ID:    users.ID(dataFromToken["id"].(string)),
+        }, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">package posts
+
+import (
+        "slices"
+        "time"
+
+        "github.com/google/uuid"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+// Post model info
+//
+// @Description Post Contains all the information about a particular post in the app
+type Post struct {
+        ID               users.ID         `json:"id" bson:"uuid" example:"12345678-9abc-def1-2345-6789abcdef12" minLength:"36" maxLength:"36"`
+        Score            int              `json:"score" bson:"score" example:"-1"` // The overall balance of the post's votes
+        Views            uint             `json:"views" bson:"views" example:"1"`  // How many times the post has been viewed by users
+        Type             PostType         `json:"type" bson:"type" example:"1"`    // Post with text(1) or with a link(0)
+        Title            string           `json:"title" bson:"title" example:"Awesome title"`
+        URL              string           `json:"url,omitempty" bson:"url,omitempty" example:"http://localhost:8080/"`
+        Author           jwt.TokenPayload `json:"author" bson:"author"`                                                            // User who created the Post
+        Category         PostCategory     `json:"category" bson:"category" example:"0"`                                            // Number of the category to which the Post belongs
+        Text             string           `json:"text,omitempty" bson:"text,omitempty" example:"Awesome text" minLength:"4"`       // Content of the Post
+        Votes            Votes            `json:"votes" bson:"votes"`                                                              // List of all the votes put by users on the post
+        Comments         []*PostComment   `json:"comments" bson:"comments"`                                                        // List of all comments left by users under the post
+        Created          string           `json:"created" bson:"created" example:"2006-01-02T15:04:05.999Z" format:"date-time"`    // Date the Post was created
+        UpvotePercentage int              `json:"upvotePercentage" bson:"upvotePercentage" example:"75" minimum:"0" maximum:"100"` // Percentage of positive Votes to Post
+}
+
+type Posts []*Post
+
+// PostPayload model info
+//
+// @Description PostPayload contains the necessary information to create a post
+type PostPayload struct {
+        Type     PostType     `json:"type"` // link or text
+        Title    string       `json:"title" example:"Awesome title"`
+        URL      string       `json:"url,omitempty" example:"http://localhost:8080/"`
+        Category PostCategory `json:"category" example:"0"`                                // Number of the category to which the Post belongs
+        Text     string       `json:"text,omitempty" example:"Awesome text" minLength:"4"` // Content of the Post
+}
+
+func NewPost(author jwt.TokenPayload, payload PostPayload) *Post <span class="cov8" title="1">{
+        newPost := &amp;Post{
+                ID:               users.ID(uuid.New().String()),
+                Score:            1,
+                Views:            1,
+                Type:             payload.Type,
+                Title:            payload.Title,
+                Author:           author,
+                Category:         payload.Category,
+                Text:             payload.Text,
+                Votes:            Votes{author.ID: NewPostVote(author.ID, upVote)},
+                Comments:         make([]*PostComment, 0),
+                Created:          time.Now().Format(TimeFormat),
+                UpvotePercentage: 100,
+        }
+        if newPost.Type == WithLink </span><span class="cov8" title="1">{
+                newPost.URL = payload.URL
+        }</span>
+
+        <span class="cov8" title="1">return newPost</span>
+}
+
+func (p *Post) AddComment(author jwt.TokenPayload, commentBody string) *PostComment <span class="cov8" title="1">{
+        newComment := NewPostComment(author, commentBody)
+        p.Comments = append(p.Comments, newComment)
+
+        return newComment
+}</span>
+
+func (p *Post) DeleteComment(commentID users.ID) error <span class="cov8" title="1">{
+        lenBeforeDelete := len(p.Comments)
+        p.Comments = slices.DeleteFunc(p.Comments, func(comment *PostComment) bool </span><span class="cov8" title="1">{
+                return commentID == comment.ID
+        }</span>)
+        <span class="cov8" title="1">if lenBeforeDelete == len(p.Comments) </span><span class="cov8" title="1">{
+                return errs.ErrCommentNotFound
+        }</span>
+
+        <span class="cov8" title="1">return nil</span>
+}
+
+func (p *Post) Upvote(userID users.ID) (*PostVote, bool) <span class="cov8" title="1">{
+        defer p.updateUpvotePercentage()
+        vote, ok := p.getVoteByUserID(userID)
+        if !ok </span><span class="cov8" title="1">{
+                vote = NewPostVote(userID, upVote)
+                p.Votes[userID] = vote
+                p.Score++
+                return vote, true
+        }</span>
+        <span class="cov8" title="1">if vote.Vote == downVote </span><span class="cov8" title="1">{
+                vote.Vote = upVote
+                p.Score += 2
+        }</span>
+
+        <span class="cov8" title="1">return vote, false</span>
+}
+
+func (p *Post) Downvote(userID users.ID) (*PostVote, bool) <span class="cov8" title="1">{
+        defer p.updateUpvotePercentage()
+        vote, ok := p.getVoteByUserID(userID)
+        if !ok </span><span class="cov8" title="1">{
+                vote = NewPostVote(userID, downVote)
+                p.Votes[userID] = vote
+                p.Score--
+                return vote, true
+        }</span>
+        <span class="cov8" title="1">if vote.Vote == upVote </span><span class="cov8" title="1">{
+                vote.Vote = downVote
+                p.Score -= 2
+        }</span>
+
+        <span class="cov8" title="1">return vote, false</span>
+}
+
+func (p *Post) Unvote(userID users.ID) error <span class="cov8" title="1">{
+        vote, ok := p.getVoteByUserID(userID)
+        if !ok </span><span class="cov8" title="1">{
+                return errs.ErrVoteNotFound
+        }</span>
+
+        <span class="cov8" title="1">if vote.Vote == upVote </span><span class="cov8" title="1">{
+                p.Score--
+        }</span> else<span class="cov0" title="0"> {
+                p.Score++
+        }</span>
+
+        <span class="cov8" title="1">delete(p.Votes, userID)
+        p.updateUpvotePercentage()
+
+        return nil</span>
+}
+
+func (p *Post) updateUpvotePercentage() <span class="cov8" title="1">{
+        totalVotes := len(p.Votes)
+        if totalVotes == 0 </span><span class="cov8" title="1">{
+                p.UpvotePercentage = 0
+                return
+        }</span>
+        <span class="cov8" title="1">p.UpvotePercentage = ((p.Score + totalVotes) * 100) / (totalVotes * 2)</span>
+}
+
+func (p *Post) UpdateViews() *Post <span class="cov0" title="0">{
+        p.Views++
+        return p
+}</span>
+
+func (p *Post) getVoteByUserID(userID users.ID) (*PostVote, bool) <span class="cov8" title="1">{
+        postVote, ok := p.Votes[userID]
+        if !ok </span><span class="cov8" title="1">{
+                return nil, false
+        }</span>
+
+        <span class="cov8" title="1">return postVote, true</span>
+}
+</pre>
+		
+		<pre class="file" id="file9" style="display: none">package posts
+
+import (
+        "encoding/json"
+        "fmt"
+        "regexp"
+        "time"
+
+        "github.com/google/uuid"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/bson/bsontype"
+        "go.mongodb.org/mongo-driver/x/bsonx/bsoncore"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+// Vote type
+//
+// @Description Vote is an integer(1 or -1) representing the user's reaction to the Post
+type Vote int
+
+// PostCategory type
+//
+// @Description PostCategory is an integer representing the category to which post belongs
+type PostCategory int
+
+// PostType type
+//
+// @Description PostType is an integer(0 or 1) representing the type of the Post
+type PostType int
+type Votes map[users.ID]*PostVote
+
+// Comment model info
+//
+// @Description Comment contains the text of the comment on Post
+type Comment struct {
+        Body string `json:"comment" example:"Some comment body example" minLength:"4"`
+}
+
+// PostComment model info
+//
+// @Description PostComment contains all information about a specific comment on a Post
+type PostComment struct {
+        Created string           `json:"created" bson:"created" example:"2006-01-02T15:04:05.999Z" format:"date-time"` // Date the comment was created
+        Author  jwt.TokenPayload `json:"author" bson:"author"`
+        Body    string           `json:"body" bson:"body" example:"Some comment body example" minLength:"4"` // Content of the comment
+        ID      users.ID         `json:"id" bson:"uuid" example:"12345678-9abc-def1-2345-6789abcdef12" minLength:"36" maxLength:"36"`
+}
+
+// PostVote model info
+//
+// @Description PostVote is a structure storing user id and his/her Vote
+type PostVote struct {
+        // ID of the user who left the comment
+        UserID users.ID `json:"user" bson:"user" example:"12345678-9abc-def1-2345-6789abcdef12" minLength:"36" maxLength:"36"`
+        Vote   Vote     `json:"vote" bson:"vote" example:"-1"`
+}
+
+const (
+        downVote Vote = iota - 1
+        upVote   Vote = iota
+
+        withLink    = "link"
+        withText    = "text"
+        music       = "music"
+        funny       = "funny"
+        videos      = "videos"
+        programming = "programming"
+        news        = "news"
+        fashion     = "fashion"
+
+        CategoryCount int = 6
+        UUIDLength    int = 36
+
+        TimeFormat = "2006-01-02T15:04:05.999Z"
+)
+
+const (
+        Music PostCategory = iota
+        Funny
+        Videos
+        Programming
+        News
+        Fashion
+)
+
+const (
+        WithLink PostType = iota
+        WithText
+)
+
+var (
+        URLTemplate = regexp.MustCompile(`^((([A-Za-z]{3,9}:(?://)?)(?:[-;:&amp;=+$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&amp;=+$,\w]+@)[A-Za-z0-9.-]+)((?:/[+~%/.\w-_]*)?\??(?:[-+=&amp;;%@.\w_]*)#?(?:\w*))?)$`)
+)
+
+var (
+        postCategories = map[PostCategory]string{
+                0: music,
+                1: funny,
+                2: videos,
+                3: programming,
+                4: news,
+                5: fashion,
+        }
+        postTypes = map[PostType]string{
+                0: withLink,
+                1: withText,
+        }
+)
+
+func (pc PostCategory) String() string <span class="cov8" title="1">{
+        return postCategories[pc]
+}</span>
+
+func (pc *PostCategory) UnmarshalJSON(category []byte) error <span class="cov8" title="1">{
+        var s string
+        if err := json.Unmarshal(category, &amp;s); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov8" title="1">ctgry, err := StringToPostCategory(s)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov8" title="1">*pc = ctgry
+
+        return nil</span>
+}
+
+func (pc *PostCategory) UnmarshalBSONValue(bt bsontype.Type, category []byte) error <span class="cov8" title="1">{
+        if bt != bson.TypeString </span><span class="cov0" title="0">{
+                return fmt.Errorf("invalid bson postCategory type '%s'", bt.String())
+        }</span>
+        <span class="cov8" title="1">cat, _, ok := bsoncore.ReadString(category)
+        if !ok </span><span class="cov0" title="0">{
+                return fmt.Errorf("invalid bson postCategory value")
+        }</span>
+
+        <span class="cov8" title="1">ctgry, err := StringToPostCategory(cat)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov8" title="1">*pc = ctgry
+
+        return nil</span>
+}
+
+func (pc PostCategory) MarshalJSON() ([]byte, error) <span class="cov8" title="1">{
+        return json.Marshal(pc.String())
+}</span>
+
+func (pc PostCategory) MarshalBSONValue() (bsontype.Type, []byte, error) <span class="cov8" title="1">{
+        return bson.MarshalValue(pc.String())
+}</span>
+
+func StringToPostCategory(s string) (PostCategory, error) <span class="cov8" title="1">{
+        var category PostCategory
+        switch s </span>{
+        case music:<span class="cov8" title="1">
+                category = Music</span>
+        case funny:<span class="cov0" title="0">
+                category = Funny</span>
+        case videos:<span class="cov0" title="0">
+                category = Videos</span>
+        case programming:<span class="cov8" title="1">
+                category = Programming</span>
+        case news:<span class="cov0" title="0">
+                category = News</span>
+        case fashion:<span class="cov0" title="0">
+                category = Fashion</span>
+        default:<span class="cov8" title="1">
+                return category, errs.ErrInvalidCategory</span>
+        }
+
+        <span class="cov8" title="1">return category, nil</span>
+}
+
+func (pt PostType) String() string <span class="cov8" title="1">{
+        return postTypes[pt]
+}</span>
+
+func (pt *PostType) UnmarshalJSON(postType []byte) error <span class="cov8" title="1">{
+        var s string
+        if err := json.Unmarshal(postType, &amp;s); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov8" title="1">switch s </span>{
+        case withLink:<span class="cov8" title="1">
+                *pt = WithLink</span>
+        case withText:<span class="cov8" title="1">
+                *pt = WithText</span>
+        default:<span class="cov0" title="0">
+                return errs.ErrInvalidPostType</span>
+        }
+
+        <span class="cov8" title="1">return nil</span>
+}
+
+func (pt *PostType) UnmarshalBSONValue(bt bsontype.Type, postType []byte) error <span class="cov8" title="1">{
+        if bt != bson.TypeString </span><span class="cov0" title="0">{
+                return fmt.Errorf("invalid bson postType type '%s'", bt.String())
+        }</span>
+        <span class="cov8" title="1">tp, _, ok := bsoncore.ReadString(postType)
+        if !ok </span><span class="cov0" title="0">{
+                return fmt.Errorf("invalid bson postType value")
+        }</span>
+
+        <span class="cov8" title="1">switch tp </span>{
+        case withLink:<span class="cov8" title="1">
+                *pt = WithLink</span>
+        case withText:<span class="cov8" title="1">
+                *pt = WithText</span>
+        default:<span class="cov0" title="0">
+                return errs.ErrInvalidPostType</span>
+        }
+
+        <span class="cov8" title="1">return nil</span>
+}
+
+func (pt PostType) MarshalJSON() ([]byte, error) <span class="cov8" title="1">{
+        return json.Marshal(pt.String())
+}</span>
+
+func (pt PostType) MarshalBSONValue() (bsontype.Type, []byte, error) <span class="cov8" title="1">{
+        return bson.MarshalValue(pt.String())
+}</span>
+
+func (v Votes) MarshalJSON() ([]byte, error) <span class="cov8" title="1">{
+        votes := make([]*PostVote, 0, len(v))
+        for _, postVote := range v </span><span class="cov8" title="1">{
+                votes = append(votes, postVote)
+        }</span>
+
+        <span class="cov8" title="1">return json.Marshal(votes)</span>
+}
+
+func (v Votes) MarshalBSONValue() (bsontype.Type, []byte, error) <span class="cov8" title="1">{
+        postVotes := make([]*PostVote, 0, len(v))
+        for _, vote := range v </span><span class="cov8" title="1">{
+                postVotes = append(postVotes, vote)
+        }</span>
+
+        <span class="cov8" title="1">return bson.MarshalValue(postVotes)</span>
+}
+
+func (v *Votes) UnmarshalJSONValue(votes []byte) error <span class="cov0" title="0">{
+        postVotes := make([]*PostVote, 0, len(votes))
+        if err := json.Unmarshal(votes, &amp;postVotes); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov0" title="0">for _, postVote := range postVotes </span><span class="cov0" title="0">{
+                (*v)[postVote.UserID] = postVote
+        }</span>
+
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (v *Votes) UnmarshalBSONValue(bt bsontype.Type, votes []byte) error <span class="cov8" title="1">{
+        if bt != bson.TypeArray </span><span class="cov0" title="0">{
+                return fmt.Errorf("invalid bson votes type '%s'", bt.String())
+        }</span>
+
+        <span class="cov8" title="1">postVotes := make([]*PostVote, 0)
+        if err := bson.UnmarshalValue(bson.TypeArray, votes, &amp;postVotes); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+
+        <span class="cov8" title="1">*v = map[users.ID]*PostVote{}
+        for _, postVote := range postVotes </span><span class="cov8" title="1">{
+                (*v)[postVote.UserID] = postVote
+        }</span>
+
+        <span class="cov8" title="1">return nil</span>
+}
+
+func NewPostComment(author jwt.TokenPayload, commentBody string) *PostComment <span class="cov8" title="1">{
+        return &amp;PostComment{
+                ID:      users.ID(uuid.New().String()),
+                Created: time.Now().Format(TimeFormat),
+                Author:  author,
+                Body:    commentBody,
+        }
+}</span>
+
+func NewPostVote(userID users.ID, vote Vote) *PostVote <span class="cov8" title="1">{
+        return &amp;PostVote{
+                UserID: userID,
+                Vote:   vote,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file10" style="display: none">package users
+
+import (
+        "github.com/google/uuid"
+)
+
+type Username string
+type ID string
+
+type User struct {
+        ID       ID       `schema:"-" json:"-"`
+        Username Username `schema:"username,required" json:"username"`
+        Password string   `schema:"password,required" json:"password" minLength:"8" format:"password"`
+}
+
+// AuthUserInfo model info
+//
+// @Description AuthUserInfo stores User credentials contained in the JWT Session token.
+type AuthUserInfo struct {
+        Login    Username `json:"username" example:"Valery_Albertovich"`
+        Password string   `json:"password" example:"want_pizza" minLength:"8" format:"password"`
+}
+
+func NewUser(authInfo AuthUserInfo) *User <span class="cov8" title="1">{
+        return &amp;User{
+                ID:       ID(uuid.New().String()),
+                Username: authInfo.Login,
+                Password: authInfo.Password,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file11" style="display: none">package service
+
+import (
+        "context"
+
+        "github.com/pkg/errors"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/posts"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+type PostStorage interface {
+        GetAllPosts(ctx context.Context) ([]*posts.Post, error)
+        GetPostsByCategory(ctx context.Context, postCategory posts.PostCategory) ([]*posts.Post, error)
+        GetPostsByUser(ctx context.Context, userLogin users.Username) ([]*posts.Post, error)
+        GetPostByID(ctx context.Context, postID users.ID) (*posts.Post, error)
+        CreatePost(ctx context.Context, postPayload posts.PostPayload) (*posts.Post, error)
+        DeletePost(ctx context.Context, postID users.ID) error
+}
+
+type PostActions interface {
+        AddComment(ctx context.Context, post *posts.Post, comment posts.Comment) (*posts.Post, error)
+        DeleteComment(ctx context.Context, post *posts.Post, commentID users.ID) (*posts.Post, error)
+        Upvote(ctx context.Context, post *posts.Post) (*posts.Post, error)
+        Downvote(ctx context.Context, post *posts.Post) (*posts.Post, error)
+        Unvote(ctx context.Context, post *posts.Post) (*posts.Post, error)
+        UpdateViews(ctx context.Context, postID users.ID) error
+}
+
+type PostHandler struct {
+        repo             PostStorage
+        actionController PostActions
+}
+
+func NewPostHandler(storage PostStorage, actions PostActions) *PostHandler <span class="cov0" title="0">{
+        return &amp;PostHandler{
+                repo:             storage,
+                actionController: actions,
+        }
+}</span>
+
+func (p *PostHandler) GetAllPosts(ctx context.Context) ([]*posts.Post, error) <span class="cov0" title="0">{
+        source := "GetAllPosts"
+        postList, err := p.repo.GetAllPosts(ctx)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return postList, nil</span>
+}
+
+func (p *PostHandler) GetPostsByCategory(ctx context.Context, postCategory posts.PostCategory) ([]*posts.Post, error) <span class="cov0" title="0">{
+        source := "GetPostsByCategory"
+        postList, err := p.repo.GetPostsByCategory(ctx, postCategory)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return postList, nil</span>
+}
+
+func (p *PostHandler) GetPostsByUser(ctx context.Context, userLogin users.Username) ([]*posts.Post, error) <span class="cov0" title="0">{
+        source := "GetPostsByUser"
+        postList, err := p.repo.GetPostsByUser(ctx, userLogin)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return postList, nil</span>
+}
+
+func (p *PostHandler) GetPostByID(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov0" title="0">{
+        source := "GetPostByID"
+        post, err := p.repo.GetPostByID(ctx, postID)
+        if err != nil </span><span class="cov0" title="0">{
+                return post, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">if err = p.actionController.UpdateViews(ctx, postID); err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return post.UpdateViews(), nil</span>
+}
+
+func (p *PostHandler) CreatePost(ctx context.Context, postPayload posts.PostPayload) (*posts.Post, error) <span class="cov0" title="0">{
+        source := "CreatePost"
+        if postPayload.Type == posts.WithLink &amp;&amp; !posts.URLTemplate.MatchString(postPayload.URL) </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(errs.ErrInvalidURL, source)
+        }</span>
+
+        <span class="cov0" title="0">return p.repo.CreatePost(ctx, postPayload)</span>
+}
+
+func (p *PostHandler) DeletePost(ctx context.Context, postID users.ID) error <span class="cov0" title="0">{
+        source := "DeletePost"
+        if err := p.repo.DeletePost(ctx, postID); err != nil </span><span class="cov0" title="0">{
+                return errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (p *PostHandler) Upvote(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov0" title="0">{
+        source := "Upvote"
+        post, err := p.repo.GetPostByID(ctx, postID)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">post, err = p.actionController.Upvote(ctx, post)
+        if err != nil </span><span class="cov0" title="0">{
+                return post, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return post, nil</span>
+}
+
+func (p *PostHandler) Downvote(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov0" title="0">{
+        source := "Downvote"
+        post, err := p.repo.GetPostByID(ctx, postID)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">post, err = p.actionController.Downvote(ctx, post)
+        if err != nil </span><span class="cov0" title="0">{
+                return post, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return post, nil</span>
+}
+
+func (p *PostHandler) Unvote(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov0" title="0">{
+        source := "Unvote"
+        post, err := p.repo.GetPostByID(ctx, postID)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">post, err = p.actionController.Unvote(ctx, post)
+        if err != nil </span><span class="cov0" title="0">{
+                return post, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return post, nil</span>
+}
+
+func (p *PostHandler) AddComment(ctx context.Context, postID users.ID, comment posts.Comment) (*posts.Post, error) <span class="cov0" title="0">{
+        source := "AddComment"
+        if comment.Body == "" </span><span class="cov0" title="0">{
+                return nil, errs.ErrBadCommentBody
+        }</span>
+
+        <span class="cov0" title="0">post, err := p.repo.GetPostByID(ctx, postID)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">post, err = p.actionController.AddComment(ctx, post, comment)
+        if err != nil </span><span class="cov0" title="0">{
+                return post, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return post, nil</span>
+}
+
+func (p *PostHandler) DeleteComment(ctx context.Context, postID, commentID users.ID) (*posts.Post, error) <span class="cov0" title="0">{
+        source := "DeleteComment"
+        post, err := p.repo.GetPostByID(ctx, postID)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">post, err = p.actionController.DeleteComment(ctx, post, commentID)
+        if err != nil </span><span class="cov0" title="0">{
+                return post, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return post, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file12" style="display: none">package service
+
+import (
+        "context"
+
+        "github.com/pkg/errors"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+)
+
+type SessionManager interface {
+        CreateSession(ctx context.Context, session *jwt.Session, payload *jwt.TokenPayload) (*jwt.Session, error)
+        CheckSession(ctx context.Context, session *jwt.Session) (*jwt.TokenPayload, error)
+}
+
+//go:generate mockgen -source=session.go -destination=../storage/mocks/sessions_repo_redis_mock.go -package=mocks SessionAPI
+type SessionAPI interface {
+        New(ctx context.Context) (*jwt.Session, error)
+        Verify(ctx context.Context, session *jwt.Session) (*jwt.TokenPayload, error)
+}
+
+type SessionHandler struct {
+        manager SessionManager
+}
+
+func NewSessionHandler(mngr SessionManager) *SessionHandler <span class="cov0" title="0">{
+        return &amp;SessionHandler{
+                manager: mngr,
+        }
+}</span>
+
+func (s *SessionHandler) New(ctx context.Context) (*jwt.Session, error) <span class="cov0" title="0">{
+        source := "New session"
+        payload, ok := ctx.Value(jwt.Payload).(jwt.TokenPayload)
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov0" title="0">sess, err := jwt.NewSession(payload)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">sess, err = s.manager.CreateSession(ctx, sess, &amp;payload)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return sess, nil</span>
+}
+
+func (s *SessionHandler) Verify(ctx context.Context, session *jwt.Session) (*jwt.TokenPayload, error) <span class="cov0" title="0">{
+        source := "Verify session"
+        payload, err := s.manager.CheckSession(ctx, session)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return payload, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file13" style="display: none">package service
+
+import (
+        "context"
+
+        "github.com/pkg/errors"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+type UserStorage interface {
+        RegisterUser(ctx context.Context, authData users.AuthUserInfo) (*users.User, error)
+        Authorize(ctx context.Context, authData users.AuthUserInfo) (*users.User, error)
+}
+
+type UserHandler struct {
+        Repo UserStorage
+}
+
+func NewUserHandler(u UserStorage) *UserHandler <span class="cov0" title="0">{
+        return &amp;UserHandler{
+                Repo: u,
+        }
+}</span>
+
+func (h *UserHandler) Register(ctx context.Context, authData users.AuthUserInfo) (*jwt.TokenPayload, error) <span class="cov0" title="0">{
+        source := "Register"
+        newUser, err := h.Repo.RegisterUser(ctx, authData)
+        if err != nil </span><span class="cov0" title="0">{
+                err = errors.Wrap(err, source)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return &amp;jwt.TokenPayload{
+                Login: newUser.Username,
+                ID:    newUser.ID,
+        }, nil</span>
+}
+
+func (h *UserHandler) Authorize(ctx context.Context, authData users.AuthUserInfo) (*jwt.TokenPayload, error) <span class="cov0" title="0">{
+        source := "Authorize"
+        user, err := h.Repo.Authorize(ctx, authData)
+        if err != nil </span><span class="cov0" title="0">{
+                err = errors.Wrap(err, source)
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return &amp;jwt.TokenPayload{
+                Login: user.Username,
+                ID:    user.ID,
+        }, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file14" style="display: none">package inmem
+
+import (
+        "cmp"
+        "context"
+        "slices"
+        "sync"
+
+        "github.com/pkg/errors"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        "github.com/Benzogang-Tape/Reddit/internal/models/posts"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+type PostRepo struct {
+        storage []*posts.Post
+        mu      *sync.RWMutex
+}
+
+func NewPostRepo() *PostRepo <span class="cov0" title="0">{
+        return &amp;PostRepo{
+                storage: make([]*posts.Post, 0),
+                mu:      &amp;sync.RWMutex{},
+        }
+}</span>
+
+func (p *PostRepo) GetAllPosts(ctx context.Context) ([]*posts.Post, error) <span class="cov0" title="0">{ //nolint:unparam
+        postList := make([]*posts.Post, 0, len(p.storage))
+        p.mu.RLock()
+        defer p.mu.RUnlock()
+        for _, post := range p.storage </span><span class="cov0" title="0">{
+                postList = append(postList, &amp;(*post))
+        }</span>
+
+        <span class="cov0" title="0">return postList, nil</span>
+}
+
+func (p *PostRepo) GetPostsByCategory(ctx context.Context, postCategory posts.PostCategory) ([]*posts.Post, error) <span class="cov0" title="0">{ //nolint:unparam
+        postList := make([]*posts.Post, 0, len(p.storage)/posts.CategoryCount)
+        p.mu.RLock()
+        defer p.mu.RUnlock()
+        for _, post := range p.storage </span><span class="cov0" title="0">{
+                if post.Category == postCategory </span><span class="cov0" title="0">{
+                        postList = append(postList, &amp;(*post))
+                }</span>
+        }
+
+        <span class="cov0" title="0">return postList, nil</span>
+}
+
+func (p *PostRepo) GetPostsByUser(ctx context.Context, userLogin users.Username) ([]*posts.Post, error) <span class="cov0" title="0">{ //nolint:unparam
+        postList := make([]*posts.Post, 0)
+        p.mu.RLock()
+        defer p.mu.RUnlock()
+        for _, post := range p.storage </span><span class="cov0" title="0">{
+                if post.Author.Login == userLogin </span><span class="cov0" title="0">{
+                        postList = append(postList, &amp;(*post))
+                }</span>
+        }
+
+        <span class="cov0" title="0">return postList, nil</span>
+}
+
+func (p *PostRepo) GetPostByID(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov0" title="0">{ //nolint:unparam
+        source := "GetPostByID"
+        post, err := p.getPostByID(postID)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        //original
+        //return &amp;(*post.UpdateViews()), nil
+
+        // fix
+        //pst := &amp;(*post)
+        //post.UpdateViews()
+        //return pst, nil
+
+        // another fix
+        <span class="cov0" title="0">return post, nil</span>
+}
+
+func (p *PostRepo) CreatePost(ctx context.Context, postPayload posts.PostPayload) (*posts.Post, error) <span class="cov0" title="0">{
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov0" title="0">defer p.sortPosts()
+
+        newPost := posts.NewPost(*author, postPayload)
+        p.mu.Lock()
+        defer p.mu.Unlock()
+        p.storage = append(p.storage, newPost)
+
+        return &amp;(*newPost), nil</span>
+}
+
+func (p *PostRepo) DeletePost(ctx context.Context, postID users.ID) error <span class="cov0" title="0">{ //nolint:unparam
+        lenBeforeDelete := len(p.storage)
+        p.mu.Lock()
+        p.storage = slices.DeleteFunc(p.storage, func(post *posts.Post) bool </span><span class="cov0" title="0">{
+                return post.ID == postID
+        }</span>)
+        <span class="cov0" title="0">p.mu.Unlock()
+        if lenBeforeDelete == len(p.storage) </span><span class="cov0" title="0">{
+                return errs.ErrPostNotFound
+        }</span>
+
+        <span class="cov0" title="0">return nil</span>
+}
+
+//func (p *PostRepo) AddComment(ctx context.Context, postID models.ID, comment models.Comment) (*models.Post, error) {
+//        source := "AddComment"
+//        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+//        if !ok {
+//                return nil, errs.ErrBadPayload
+//        }
+//
+//        post, err := p.getPostByID(postID)
+//        if err != nil {
+//                return nil, errors.Wrap(err, source)
+//        }
+//        post.AddComment(*author, comment.Body)
+//
+//        return &amp;(*post), nil
+//}
+
+func (p *PostRepo) AddComment(ctx context.Context, post *posts.Post, comment posts.Comment) (*posts.Post, error) <span class="cov0" title="0">{
+        //source := "AddComment"
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov0" title="0">post.AddComment(*author, comment.Body)
+
+        return &amp;(*post), nil</span>
+}
+
+//func (p *PostRepo) DeleteComment(ctx context.Context, postID, commentID models.ID) (*models.Post, error) {
+//        source := "DeleteComment"
+//        post, err := p.getPostByID(postID)
+//        if err != nil {
+//                return nil, errors.Wrap(err, source)
+//        }
+//        if err = post.DeleteComment(commentID); err != nil {
+//                return nil, errors.Wrap(err, source)
+//        }
+//
+//        return &amp;(*post), nil
+//}
+
+func (p *PostRepo) DeleteComment(ctx context.Context, post *posts.Post, commentID users.ID) (*posts.Post, error) <span class="cov0" title="0">{ //nolint:unparam
+        source := "DeleteComment"
+        if err := post.DeleteComment(commentID); err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">return &amp;(*post), nil</span>
+}
+
+//func (p *PostRepo) Upvote(ctx context.Context, postID models.ID) (*models.Post, error) {
+//        source := "Upvote"
+//        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+//        if !ok {
+//                return nil, errs.ErrBadPayload
+//        }
+//
+//        post, err := p.getPostByID(postID)
+//        if err != nil {
+//                return nil, errors.Wrap(err, source)
+//        }
+//        post.Upvote(author.ID)
+//        p.sortPosts()
+//
+//        return &amp;(*post), nil
+//}
+
+func (p *PostRepo) Upvote(ctx context.Context, post *posts.Post) (*posts.Post, error) <span class="cov0" title="0">{
+        //source := "Upvote"
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov0" title="0">post.Upvote(author.ID)
+        p.sortPosts()
+
+        return &amp;(*post), nil</span>
+}
+
+//func (p *PostRepo) Downvote(ctx context.Context, postID models.ID) (*models.Post, error) {
+//        source := "Downvote"
+//        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+//        if !ok {
+//                return nil, errs.ErrBadPayload
+//        }
+//
+//        post, err := p.getPostByID(postID)
+//        if err != nil {
+//                return nil, errors.Wrap(err, source)
+//        }
+//        post.Downvote(author.ID)
+//        p.sortPosts()
+//
+//        return &amp;(*post), nil
+//}
+
+func (p *PostRepo) Downvote(ctx context.Context, post *posts.Post) (*posts.Post, error) <span class="cov0" title="0">{
+        //source := "Downvote"
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov0" title="0">post.Downvote(author.ID)
+        p.sortPosts()
+
+        return &amp;(*post), nil</span>
+}
+
+//func (p *PostRepo) Unvote(ctx context.Context, postID models.ID) (*models.Post, error) {
+//        source := "Unvote"
+//        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+//        if !ok {
+//                return nil, errs.ErrBadPayload
+//        }
+//
+//        post, err := p.getPostByID(postID)
+//        if err != nil {
+//                return nil, errors.Wrap(err, source)
+//        }
+//        if err = post.Unvote(author.ID); err != nil {
+//                return nil, errors.Wrap(err, source)
+//        }
+//        p.sortPosts()
+//
+//        return &amp;(*post), nil
+//}
+
+func (p *PostRepo) Unvote(ctx context.Context, post *posts.Post) (*posts.Post, error) <span class="cov0" title="0">{
+        source := "Unvote"
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov0" title="0">if err := post.Unvote(author.ID); err != nil </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov0" title="0">p.sortPosts()
+
+        return &amp;(*post), nil</span>
+}
+
+func (p *PostRepo) getPostByID(postID users.ID) (*posts.Post, error) <span class="cov0" title="0">{
+        p.mu.RLock()
+        defer p.mu.RUnlock()
+        postIdx := slices.IndexFunc(p.storage, func(post *posts.Post) bool </span><span class="cov0" title="0">{
+                return post.ID == postID
+        }</span>)
+        <span class="cov0" title="0">if postIdx == -1 </span><span class="cov0" title="0">{
+                return nil, errs.ErrPostNotFound
+        }</span>
+
+        <span class="cov0" title="0">return &amp;(*p.storage[postIdx]), nil</span>
+}
+
+func (p *PostRepo) UpdateViews(ctx context.Context, postID users.ID) error <span class="cov0" title="0">{ //nolint:unparam
+        // stub
+        return nil
+}</span>
+
+func (p *PostRepo) sortPosts() <span class="cov0" title="0">{
+        p.mu.Lock()
+        defer p.mu.Unlock()
+        slices.SortStableFunc(p.storage, func(a, b *posts.Post) int </span><span class="cov0" title="0">{
+                return -cmp.Compare(a.Score, b.Score)
+        }</span>)
+}
+</pre>
+		
+		<pre class="file" id="file15" style="display: none">package inmem
+
+import (
+        "context"
+        "sync"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+)
+
+type SessionRepo struct {
+        storage map[string]*jwt.TokenPayload
+        mu      *sync.RWMutex
+}
+
+func NewSessionRepo() *SessionRepo <span class="cov0" title="0">{
+        return &amp;SessionRepo{
+                storage: make(map[string]*jwt.TokenPayload),
+                mu:      &amp;sync.RWMutex{},
+        }
+}</span>
+
+// Need TTL
+
+func (s *SessionRepo) CreateSession(ctx context.Context, session *jwt.Session, payload *jwt.TokenPayload) (*jwt.Session, error) <span class="cov0" title="0">{ //nolint:unparam
+        key := session.Token
+        s.mu.Lock()
+        defer s.mu.Unlock()
+        s.storage[key] = payload
+        return session, nil
+}</span>
+
+func (s *SessionRepo) CheckSession(ctx context.Context, sess *jwt.Session) (*jwt.TokenPayload, error) <span class="cov0" title="0">{ //nolint:unparam
+        key := sess.Token
+        s.mu.RLock()
+        defer s.mu.RUnlock()
+        payload, ok := s.storage[key]
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errs.ErrNoSession
+        }</span>
+
+        <span class="cov0" title="0">return payload, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file16" style="display: none">package inmem
+
+import (
+        "context"
+        "sync"
+
+        "github.com/pkg/errors"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+type UserRepo struct {
+        storage map[users.Username]*users.User
+        mu      *sync.RWMutex
+}
+
+func NewUserRepo() *UserRepo <span class="cov0" title="0">{
+        return &amp;UserRepo{
+                storage: make(map[users.Username]*users.User, 42),
+                mu:      &amp;sync.RWMutex{},
+        }
+}</span>
+
+func (repo *UserRepo) Authorize(ctx context.Context, authData users.AuthUserInfo) (*users.User, error) <span class="cov0" title="0">{ //nolint:unparam
+        source := "Authorize"
+        repo.mu.RLock()
+        user, ok := repo.storage[authData.Login]
+        repo.mu.RUnlock()
+
+        if !ok </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(errs.ErrNoUser, source)
+        }</span>
+        <span class="cov0" title="0">if user.Password != authData.Password </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(errs.ErrBadPass, source)
+        }</span>
+
+        <span class="cov0" title="0">return user, nil</span>
+}
+
+func (repo *UserRepo) RegisterUser(ctx context.Context, authData users.AuthUserInfo) (*users.User, error) <span class="cov0" title="0">{ //nolint:unparam
+        source := "RegisterUser"
+        repo.mu.RLock()
+        _, ok := repo.storage[authData.Login]
+        repo.mu.RUnlock()
+        if ok </span><span class="cov0" title="0">{
+                return nil, errors.Wrap(errs.ErrUserExists, source)
+        }</span>
+
+        <span class="cov0" title="0">newUser := repo.createUser(authData)
+
+        return newUser, nil</span>
+}
+
+func (repo *UserRepo) createUser(authData users.AuthUserInfo) *users.User <span class="cov0" title="0">{
+        newUser := users.NewUser(authData)
+        repo.mu.Lock()
+        defer repo.mu.Unlock()
+        repo.storage[newUser.Username] = newUser
+
+        return newUser
+}</span>
+</pre>
+		
+		<pre class="file" id="file17" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: mongoDB_abstraction.go
+
+// Package mocks is a generated GoMock package.
+package mocks
+
+import (
+        context "context"
+        reflect "reflect"
+
+        storage "github.com/Benzogang-Tape/Reddit/internal/storage"
+        gomock "github.com/golang/mock/gomock"
+        options "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+// MockAbstractCollection is a mock of AbstractCollection interface.
+type MockAbstractCollection struct {
+        ctrl     *gomock.Controller
+        recorder *MockAbstractCollectionMockRecorder
+}
+
+// MockAbstractCollectionMockRecorder is the mock recorder for MockAbstractCollection.
+type MockAbstractCollectionMockRecorder struct {
+        mock *MockAbstractCollection
+}
+
+// NewMockAbstractCollection creates a new mock instance.
+func NewMockAbstractCollection(ctrl *gomock.Controller) *MockAbstractCollection <span class="cov8" title="1">{
+        mock := &amp;MockAbstractCollection{ctrl: ctrl}
+        mock.recorder = &amp;MockAbstractCollectionMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockAbstractCollection) EXPECT() *MockAbstractCollectionMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// DeleteOne mocks base method.
+func (m *MockAbstractCollection) DeleteOne(ctx context.Context, filter any, opts ...*options.DeleteOptions) (int64, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        varargs := []interface{}{ctx, filter}
+        for _, a := range opts </span><span class="cov0" title="0">{
+                varargs = append(varargs, a)
+        }</span>
+        <span class="cov8" title="1">ret := m.ctrl.Call(m, "DeleteOne", varargs...)
+        ret0, _ := ret[0].(int64)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1</span>
+}
+
+// DeleteOne indicates an expected call of DeleteOne.
+func (mr *MockAbstractCollectionMockRecorder) DeleteOne(ctx, filter interface{}, opts ...interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        varargs := append([]interface{}{ctx, filter}, opts...)
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOne", reflect.TypeOf((*MockAbstractCollection)(nil).DeleteOne), varargs...)
+}</span>
+
+// Find mocks base method.
+func (m *MockAbstractCollection) Find(ctx context.Context, filter any, opts ...*options.FindOptions) (storage.AbstractCursor, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        varargs := []interface{}{ctx, filter}
+        for _, a := range opts </span><span class="cov0" title="0">{
+                varargs = append(varargs, a)
+        }</span>
+        <span class="cov0" title="0">ret := m.ctrl.Call(m, "Find", varargs...)
+        ret0, _ := ret[0].(storage.AbstractCursor)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1</span>
+}
+
+// Find indicates an expected call of Find.
+func (mr *MockAbstractCollectionMockRecorder) Find(ctx, filter interface{}, opts ...interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        varargs := append([]interface{}{ctx, filter}, opts...)
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Find", reflect.TypeOf((*MockAbstractCollection)(nil).Find), varargs...)
+}</span>
+
+// FindOne mocks base method.
+func (m *MockAbstractCollection) FindOne(ctx context.Context, filter any, opts ...*options.FindOneOptions) storage.AbstractSingleResult <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        varargs := []interface{}{ctx, filter}
+        for _, a := range opts </span><span class="cov0" title="0">{
+                varargs = append(varargs, a)
+        }</span>
+        <span class="cov8" title="1">ret := m.ctrl.Call(m, "FindOne", varargs...)
+        ret0, _ := ret[0].(storage.AbstractSingleResult)
+        return ret0</span>
+}
+
+// FindOne indicates an expected call of FindOne.
+func (mr *MockAbstractCollectionMockRecorder) FindOne(ctx, filter interface{}, opts ...interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        varargs := append([]interface{}{ctx, filter}, opts...)
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindOne", reflect.TypeOf((*MockAbstractCollection)(nil).FindOne), varargs...)
+}</span>
+
+// InsertOne mocks base method.
+func (m *MockAbstractCollection) InsertOne(ctx context.Context, document any, opts ...*options.InsertOneOptions) (any, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        varargs := []interface{}{ctx, document}
+        for _, a := range opts </span><span class="cov0" title="0">{
+                varargs = append(varargs, a)
+        }</span>
+        <span class="cov0" title="0">ret := m.ctrl.Call(m, "InsertOne", varargs...)
+        ret0, _ := ret[0].(any)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1</span>
+}
+
+// InsertOne indicates an expected call of InsertOne.
+func (mr *MockAbstractCollectionMockRecorder) InsertOne(ctx, document interface{}, opts ...interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        varargs := append([]interface{}{ctx, document}, opts...)
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "InsertOne", reflect.TypeOf((*MockAbstractCollection)(nil).InsertOne), varargs...)
+}</span>
+
+// UpdateOne mocks base method.
+func (m *MockAbstractCollection) UpdateOne(ctx context.Context, filter, update any, opts ...*options.UpdateOptions) (int64, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        varargs := []interface{}{ctx, filter, update}
+        for _, a := range opts </span><span class="cov0" title="0">{
+                varargs = append(varargs, a)
+        }</span>
+        <span class="cov8" title="1">ret := m.ctrl.Call(m, "UpdateOne", varargs...)
+        ret0, _ := ret[0].(int64)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1</span>
+}
+
+// UpdateOne indicates an expected call of UpdateOne.
+func (mr *MockAbstractCollectionMockRecorder) UpdateOne(ctx, filter, update interface{}, opts ...interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        varargs := append([]interface{}{ctx, filter, update}, opts...)
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateOne", reflect.TypeOf((*MockAbstractCollection)(nil).UpdateOne), varargs...)
+}</span>
+
+// MockAbstractCursor is a mock of AbstractCursor interface.
+type MockAbstractCursor struct {
+        ctrl     *gomock.Controller
+        recorder *MockAbstractCursorMockRecorder
+}
+
+// MockAbstractCursorMockRecorder is the mock recorder for MockAbstractCursor.
+type MockAbstractCursorMockRecorder struct {
+        mock *MockAbstractCursor
+}
+
+// NewMockAbstractCursor creates a new mock instance.
+func NewMockAbstractCursor(ctrl *gomock.Controller) *MockAbstractCursor <span class="cov0" title="0">{
+        mock := &amp;MockAbstractCursor{ctrl: ctrl}
+        mock.recorder = &amp;MockAbstractCursorMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockAbstractCursor) EXPECT() *MockAbstractCursorMockRecorder <span class="cov0" title="0">{
+        return m.recorder
+}</span>
+
+// All mocks base method.
+func (m *MockAbstractCursor) All(ctx context.Context, result any) error <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "All", ctx, result)
+        ret0, _ := ret[0].(error)
+        return ret0
+}</span>
+
+// All indicates an expected call of All.
+func (mr *MockAbstractCursorMockRecorder) All(ctx, result interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "All", reflect.TypeOf((*MockAbstractCursor)(nil).All), ctx, result)
+}</span>
+
+// MockAbstractSingleResult is a mock of AbstractSingleResult interface.
+type MockAbstractSingleResult struct {
+        ctrl     *gomock.Controller
+        recorder *MockAbstractSingleResultMockRecorder
+}
+
+// MockAbstractSingleResultMockRecorder is the mock recorder for MockAbstractSingleResult.
+type MockAbstractSingleResultMockRecorder struct {
+        mock *MockAbstractSingleResult
+}
+
+// NewMockAbstractSingleResult creates a new mock instance.
+func NewMockAbstractSingleResult(ctrl *gomock.Controller) *MockAbstractSingleResult <span class="cov8" title="1">{
+        mock := &amp;MockAbstractSingleResult{ctrl: ctrl}
+        mock.recorder = &amp;MockAbstractSingleResultMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockAbstractSingleResult) EXPECT() *MockAbstractSingleResultMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// Decode mocks base method.
+func (m *MockAbstractSingleResult) Decode(v any) error <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Decode", v)
+        ret0, _ := ret[0].(error)
+        return ret0
+}</span>
+
+// Decode indicates an expected call of Decode.
+func (mr *MockAbstractSingleResultMockRecorder) Decode(v interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decode", reflect.TypeOf((*MockAbstractSingleResult)(nil).Decode), v)
+}</span>
+
+// Err mocks base method.
+func (m *MockAbstractSingleResult) Err() error <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Err")
+        ret0, _ := ret[0].(error)
+        return ret0
+}</span>
+
+// Err indicates an expected call of Err.
+func (mr *MockAbstractSingleResultMockRecorder) Err() *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Err", reflect.TypeOf((*MockAbstractSingleResult)(nil).Err))
+}</span>
+</pre>
+		
+		<pre class="file" id="file18" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: post.go
+
+// Package mocks is a generated GoMock package.
+package mocks
+
+import (
+        context "context"
+        reflect "reflect"
+
+        posts "github.com/Benzogang-Tape/Reddit/internal/models/posts"
+        users "github.com/Benzogang-Tape/Reddit/internal/models/users"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockPostAPI is a mock of PostAPI interface.
+type MockPostAPI struct {
+        ctrl     *gomock.Controller
+        recorder *MockPostAPIMockRecorder
+}
+
+// MockPostAPIMockRecorder is the mock recorder for MockPostAPI.
+type MockPostAPIMockRecorder struct {
+        mock *MockPostAPI
+}
+
+// NewMockPostAPI creates a new mock instance.
+func NewMockPostAPI(ctrl *gomock.Controller) *MockPostAPI <span class="cov8" title="1">{
+        mock := &amp;MockPostAPI{ctrl: ctrl}
+        mock.recorder = &amp;MockPostAPIMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockPostAPI) EXPECT() *MockPostAPIMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// AddComment mocks base method.
+func (m *MockPostAPI) AddComment(ctx context.Context, postID users.ID, comment posts.Comment) (*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "AddComment", ctx, postID, comment)
+        ret0, _ := ret[0].(*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// AddComment indicates an expected call of AddComment.
+func (mr *MockPostAPIMockRecorder) AddComment(ctx, postID, comment interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddComment", reflect.TypeOf((*MockPostAPI)(nil).AddComment), ctx, postID, comment)
+}</span>
+
+// CreatePost mocks base method.
+func (m *MockPostAPI) CreatePost(ctx context.Context, postPayload posts.PostPayload) (*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CreatePost", ctx, postPayload)
+        ret0, _ := ret[0].(*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// CreatePost indicates an expected call of CreatePost.
+func (mr *MockPostAPIMockRecorder) CreatePost(ctx, postPayload interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreatePost", reflect.TypeOf((*MockPostAPI)(nil).CreatePost), ctx, postPayload)
+}</span>
+
+// DeleteComment mocks base method.
+func (m *MockPostAPI) DeleteComment(ctx context.Context, postID, commentID users.ID) (*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "DeleteComment", ctx, postID, commentID)
+        ret0, _ := ret[0].(*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// DeleteComment indicates an expected call of DeleteComment.
+func (mr *MockPostAPIMockRecorder) DeleteComment(ctx, postID, commentID interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteComment", reflect.TypeOf((*MockPostAPI)(nil).DeleteComment), ctx, postID, commentID)
+}</span>
+
+// DeletePost mocks base method.
+func (m *MockPostAPI) DeletePost(ctx context.Context, postID users.ID) error <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "DeletePost", ctx, postID)
+        ret0, _ := ret[0].(error)
+        return ret0
+}</span>
+
+// DeletePost indicates an expected call of DeletePost.
+func (mr *MockPostAPIMockRecorder) DeletePost(ctx, postID interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeletePost", reflect.TypeOf((*MockPostAPI)(nil).DeletePost), ctx, postID)
+}</span>
+
+// Downvote mocks base method.
+func (m *MockPostAPI) Downvote(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Downvote", ctx, postID)
+        ret0, _ := ret[0].(*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// Downvote indicates an expected call of Downvote.
+func (mr *MockPostAPIMockRecorder) Downvote(ctx, postID interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Downvote", reflect.TypeOf((*MockPostAPI)(nil).Downvote), ctx, postID)
+}</span>
+
+// GetAllPosts mocks base method.
+func (m *MockPostAPI) GetAllPosts(ctx context.Context) ([]*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "GetAllPosts", ctx)
+        ret0, _ := ret[0].([]*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// GetAllPosts indicates an expected call of GetAllPosts.
+func (mr *MockPostAPIMockRecorder) GetAllPosts(ctx interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllPosts", reflect.TypeOf((*MockPostAPI)(nil).GetAllPosts), ctx)
+}</span>
+
+// GetPostByID mocks base method.
+func (m *MockPostAPI) GetPostByID(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "GetPostByID", ctx, postID)
+        ret0, _ := ret[0].(*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// GetPostByID indicates an expected call of GetPostByID.
+func (mr *MockPostAPIMockRecorder) GetPostByID(ctx, postID interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPostByID", reflect.TypeOf((*MockPostAPI)(nil).GetPostByID), ctx, postID)
+}</span>
+
+// GetPostsByCategory mocks base method.
+func (m *MockPostAPI) GetPostsByCategory(ctx context.Context, postCategory posts.PostCategory) ([]*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "GetPostsByCategory", ctx, postCategory)
+        ret0, _ := ret[0].([]*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// GetPostsByCategory indicates an expected call of GetPostsByCategory.
+func (mr *MockPostAPIMockRecorder) GetPostsByCategory(ctx, postCategory interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPostsByCategory", reflect.TypeOf((*MockPostAPI)(nil).GetPostsByCategory), ctx, postCategory)
+}</span>
+
+// GetPostsByUser mocks base method.
+func (m *MockPostAPI) GetPostsByUser(ctx context.Context, userLogin users.Username) ([]*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "GetPostsByUser", ctx, userLogin)
+        ret0, _ := ret[0].([]*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// GetPostsByUser indicates an expected call of GetPostsByUser.
+func (mr *MockPostAPIMockRecorder) GetPostsByUser(ctx, userLogin interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPostsByUser", reflect.TypeOf((*MockPostAPI)(nil).GetPostsByUser), ctx, userLogin)
+}</span>
+
+// Unvote mocks base method.
+func (m *MockPostAPI) Unvote(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Unvote", ctx, postID)
+        ret0, _ := ret[0].(*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// Unvote indicates an expected call of Unvote.
+func (mr *MockPostAPIMockRecorder) Unvote(ctx, postID interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Unvote", reflect.TypeOf((*MockPostAPI)(nil).Unvote), ctx, postID)
+}</span>
+
+// Upvote mocks base method.
+func (m *MockPostAPI) Upvote(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Upvote", ctx, postID)
+        ret0, _ := ret[0].(*posts.Post)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// Upvote indicates an expected call of Upvote.
+func (mr *MockPostAPIMockRecorder) Upvote(ctx, postID interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Upvote", reflect.TypeOf((*MockPostAPI)(nil).Upvote), ctx, postID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file19" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: session.go
+
+// Package mocks is a generated GoMock package.
+package mocks
+
+import (
+        context "context"
+        reflect "reflect"
+
+        jwt "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockSessionManager is a mock of SessionManager interface.
+type MockSessionManager struct {
+        ctrl     *gomock.Controller
+        recorder *MockSessionManagerMockRecorder
+}
+
+// MockSessionManagerMockRecorder is the mock recorder for MockSessionManager.
+type MockSessionManagerMockRecorder struct {
+        mock *MockSessionManager
+}
+
+// NewMockSessionManager creates a new mock instance.
+func NewMockSessionManager(ctrl *gomock.Controller) *MockSessionManager <span class="cov0" title="0">{
+        mock := &amp;MockSessionManager{ctrl: ctrl}
+        mock.recorder = &amp;MockSessionManagerMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockSessionManager) EXPECT() *MockSessionManagerMockRecorder <span class="cov0" title="0">{
+        return m.recorder
+}</span>
+
+// CheckSession mocks base method.
+func (m *MockSessionManager) CheckSession(ctx context.Context, session *jwt.Session) (*jwt.TokenPayload, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CheckSession", ctx, session)
+        ret0, _ := ret[0].(*jwt.TokenPayload)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// CheckSession indicates an expected call of CheckSession.
+func (mr *MockSessionManagerMockRecorder) CheckSession(ctx, session interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CheckSession", reflect.TypeOf((*MockSessionManager)(nil).CheckSession), ctx, session)
+}</span>
+
+// CreateSession mocks base method.
+func (m *MockSessionManager) CreateSession(ctx context.Context, session *jwt.Session, payload *jwt.TokenPayload) (*jwt.Session, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "CreateSession", ctx, session, payload)
+        ret0, _ := ret[0].(*jwt.Session)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// CreateSession indicates an expected call of CreateSession.
+func (mr *MockSessionManagerMockRecorder) CreateSession(ctx, session, payload interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateSession", reflect.TypeOf((*MockSessionManager)(nil).CreateSession), ctx, session, payload)
+}</span>
+
+// MockSessionAPI is a mock of SessionAPI interface.
+type MockSessionAPI struct {
+        ctrl     *gomock.Controller
+        recorder *MockSessionAPIMockRecorder
+}
+
+// MockSessionAPIMockRecorder is the mock recorder for MockSessionAPI.
+type MockSessionAPIMockRecorder struct {
+        mock *MockSessionAPI
+}
+
+// NewMockSessionAPI creates a new mock instance.
+func NewMockSessionAPI(ctrl *gomock.Controller) *MockSessionAPI <span class="cov8" title="1">{
+        mock := &amp;MockSessionAPI{ctrl: ctrl}
+        mock.recorder = &amp;MockSessionAPIMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockSessionAPI) EXPECT() *MockSessionAPIMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// New mocks base method.
+func (m *MockSessionAPI) New(ctx context.Context) (*jwt.Session, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "New", ctx)
+        ret0, _ := ret[0].(*jwt.Session)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// New indicates an expected call of New.
+func (mr *MockSessionAPIMockRecorder) New(ctx interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "New", reflect.TypeOf((*MockSessionAPI)(nil).New), ctx)
+}</span>
+
+// Verify mocks base method.
+func (m *MockSessionAPI) Verify(ctx context.Context, session *jwt.Session) (*jwt.TokenPayload, error) <span class="cov0" title="0">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Verify", ctx, session)
+        ret0, _ := ret[0].(*jwt.TokenPayload)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// Verify indicates an expected call of Verify.
+func (mr *MockSessionAPIMockRecorder) Verify(ctx, session interface{}) *gomock.Call <span class="cov0" title="0">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Verify", reflect.TypeOf((*MockSessionAPI)(nil).Verify), ctx, session)
+}</span>
+</pre>
+		
+		<pre class="file" id="file20" style="display: none">// Code generated by MockGen. DO NOT EDIT.
+// Source: user.go
+
+// Package mocks is a generated GoMock package.
+package mocks
+
+import (
+        context "context"
+        reflect "reflect"
+
+        jwt "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        users "github.com/Benzogang-Tape/Reddit/internal/models/users"
+        gomock "github.com/golang/mock/gomock"
+)
+
+// MockUserAPI is a mock of UserAPI interface.
+type MockUserAPI struct {
+        ctrl     *gomock.Controller
+        recorder *MockUserAPIMockRecorder
+}
+
+// MockUserAPIMockRecorder is the mock recorder for MockUserAPI.
+type MockUserAPIMockRecorder struct {
+        mock *MockUserAPI
+}
+
+// NewMockUserAPI creates a new mock instance.
+func NewMockUserAPI(ctrl *gomock.Controller) *MockUserAPI <span class="cov8" title="1">{
+        mock := &amp;MockUserAPI{ctrl: ctrl}
+        mock.recorder = &amp;MockUserAPIMockRecorder{mock}
+        return mock
+}</span>
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockUserAPI) EXPECT() *MockUserAPIMockRecorder <span class="cov8" title="1">{
+        return m.recorder
+}</span>
+
+// Authorize mocks base method.
+func (m *MockUserAPI) Authorize(ctx context.Context, authData users.AuthUserInfo) (*jwt.TokenPayload, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Authorize", ctx, authData)
+        ret0, _ := ret[0].(*jwt.TokenPayload)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// Authorize indicates an expected call of Authorize.
+func (mr *MockUserAPIMockRecorder) Authorize(ctx, authData interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Authorize", reflect.TypeOf((*MockUserAPI)(nil).Authorize), ctx, authData)
+}</span>
+
+// Register mocks base method.
+func (m *MockUserAPI) Register(ctx context.Context, authData users.AuthUserInfo) (*jwt.TokenPayload, error) <span class="cov8" title="1">{
+        m.ctrl.T.Helper()
+        ret := m.ctrl.Call(m, "Register", ctx, authData)
+        ret0, _ := ret[0].(*jwt.TokenPayload)
+        ret1, _ := ret[1].(error)
+        return ret0, ret1
+}</span>
+
+// Register indicates an expected call of Register.
+func (mr *MockUserAPIMockRecorder) Register(ctx, authData interface{}) *gomock.Call <span class="cov8" title="1">{
+        mr.mock.ctrl.T.Helper()
+        return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Register", reflect.TypeOf((*MockUserAPI)(nil).Register), ctx, authData)
+}</span>
+</pre>
+		
+		<pre class="file" id="file21" style="display: none">package storage
+
+import (
+        "context"
+
+        "go.mongodb.org/mongo-driver/mongo"
+        "go.mongodb.org/mongo-driver/mongo/options"
+)
+
+//go:generate mockgen -source=mongoDB_abstraction.go -destination=./mocks/mongoDB_abstraction_mock.go -package=mocks AbstractCollection AbstractCursor AbstractSingleResult
+type AbstractCollection interface {
+        Find(ctx context.Context, filter any, opts ...*options.FindOptions) (AbstractCursor, error)
+        FindOne(ctx context.Context, filter any, opts ...*options.FindOneOptions) AbstractSingleResult
+        InsertOne(ctx context.Context, document any, opts ...*options.InsertOneOptions) (any, error)
+        UpdateOne(ctx context.Context, filter any, update any, opts ...*options.UpdateOptions) (int64, error)
+        DeleteOne(ctx context.Context, filter any, opts ...*options.DeleteOptions) (int64, error)
+}
+
+type AbstractCursor interface {
+        All(ctx context.Context, result any) error
+}
+
+type AbstractSingleResult interface {
+        Decode(v any) error
+        Err() error
+}
+
+type mongoCollection struct {
+        collection *mongo.Collection
+}
+
+type mongoCursor struct {
+        cursor *mongo.Cursor
+}
+
+type mongoSingleResult struct { //nolint:unused
+        sr *mongo.SingleResult
+}
+
+func NewMongoCollection(collection *mongo.Collection) *mongoCollection <span class="cov8" title="1">{
+        return &amp;mongoCollection{
+                collection: collection,
+        }
+}</span>
+
+func (c *mongoCollection) Find(ctx context.Context, filter any, opts ...*options.FindOptions) (AbstractCursor, error) <span class="cov8" title="1">{
+        cursor, err := c.collection.Find(ctx, filter, opts...)
+        return &amp;mongoCursor{
+                cursor: cursor,
+        }, err
+}</span>
+
+func (c *mongoCollection) FindOne(ctx context.Context, filter any, opts ...*options.FindOneOptions) AbstractSingleResult <span class="cov0" title="0">{
+        return c.collection.FindOne(ctx, filter, opts...)
+}</span>
+
+func (c *mongoCollection) InsertOne(ctx context.Context, document any, opts ...*options.InsertOneOptions) (any, error) <span class="cov8" title="1">{
+        return c.collection.InsertOne(ctx, document, opts...)
+}</span>
+
+func (c *mongoCollection) UpdateOne(ctx context.Context, filter any, update any, opts ...*options.UpdateOptions) (int64, error) <span class="cov0" title="0">{
+        result, err := c.collection.UpdateOne(ctx, filter, update, opts...)
+        if err != nil </span><span class="cov0" title="0">{
+                return 0, err
+        }</span>
+
+        <span class="cov0" title="0">return result.MatchedCount, nil</span>
+}
+
+func (c *mongoCollection) DeleteOne(ctx context.Context, filter any, opts ...*options.DeleteOptions) (int64, error) <span class="cov0" title="0">{
+        result, err := c.collection.DeleteOne(ctx, filter, opts...)
+        if err != nil </span><span class="cov0" title="0">{
+                return 0, err
+        }</span>
+
+        <span class="cov0" title="0">return result.DeletedCount, nil</span>
+}
+
+func (c *mongoCursor) All(ctx context.Context, result any) error <span class="cov8" title="1">{
+        return c.cursor.All(ctx, result)
+}</span>
+
+func (sr *mongoSingleResult) Decode(v any) error <span class="cov0" title="0">{ //nolint:unused
+        return sr.sr.Decode(v)
+}</span>
+
+func (sr *mongoSingleResult) Err() error <span class="cov0" title="0">{ //nolint:unused
+        return sr.sr.Err()
+}</span>
+</pre>
+		
+		<pre class="file" id="file22" style="display: none">package storage
+
+import (
+        "context"
+        "fmt"
+
+        "github.com/pkg/errors"
+        "go.mongodb.org/mongo-driver/bson"
+        "go.mongodb.org/mongo-driver/mongo"
+        "go.mongodb.org/mongo-driver/mongo/options"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        "github.com/Benzogang-Tape/Reddit/internal/models/posts"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+type PostRepoMongoDB struct {
+        collection AbstractCollection
+}
+
+func NewPostRepoMongoDB(collection AbstractCollection) *PostRepoMongoDB <span class="cov8" title="1">{
+        return &amp;PostRepoMongoDB{
+                collection: collection,
+        }
+}</span>
+
+func (p *PostRepoMongoDB) GetAllPosts(ctx context.Context) ([]*posts.Post, error) <span class="cov8" title="1">{
+        posts := make(posts.Posts, 0)
+        sort := bson.D{{Key: "score", Value: -1}}
+        cur, err := p.collection.Find(ctx, bson.M{}, options.Find().SetSort(sort))
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">if err = cur.All(ctx, &amp;posts); err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return posts, nil</span>
+}
+
+func (p *PostRepoMongoDB) GetPostsByCategory(ctx context.Context, postCategory posts.PostCategory) ([]*posts.Post, error) <span class="cov8" title="1">{
+        posts := make(posts.Posts, 0)
+        filter := bson.M{"category": postCategory}
+        sort := bson.D{{Key: "score", Value: -1}}
+        cur, err := p.collection.Find(ctx, filter, options.Find().SetSort(sort))
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">if err = cur.All(ctx, &amp;posts); err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return posts, nil</span>
+}
+
+func (p *PostRepoMongoDB) GetPostsByUser(ctx context.Context, userLogin users.Username) ([]*posts.Post, error) <span class="cov8" title="1">{
+        postList := make([]*posts.Post, 0)
+        filter := bson.M{"author.username": userLogin}
+        sort := bson.D{{Key: "created", Value: -1}}
+        cur, err := p.collection.Find(ctx, filter, options.Find().SetSort(sort))
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">if err = cur.All(ctx, &amp;postList); err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return postList, nil</span>
+}
+
+func (p *PostRepoMongoDB) GetPostByID(ctx context.Context, postID users.ID) (*posts.Post, error) <span class="cov8" title="1">{
+        filter := bson.M{"uuid": postID}
+        res := p.collection.FindOne(ctx, filter)
+        if errors.Is(res.Err(), mongo.ErrNoDocuments) </span><span class="cov8" title="1">{
+                return nil, errs.ErrPostNotFound
+        }</span>
+
+        <span class="cov8" title="1">post := new(posts.Post)
+        if err := res.Decode(post); err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return post, nil</span>
+}
+
+func (p *PostRepoMongoDB) CreatePost(ctx context.Context, postPayload posts.PostPayload) (*posts.Post, error) <span class="cov8" title="1">{
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov8" title="1">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov8" title="1">newPost := posts.NewPost(*author, postPayload)
+
+        if _, err := p.collection.InsertOne(ctx, newPost); err != nil </span><span class="cov8" title="1">{
+                fmt.Println("\n\n\n\n", err.Error())
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return newPost, nil</span>
+}
+
+func (p *PostRepoMongoDB) DeletePost(ctx context.Context, postID users.ID) error <span class="cov8" title="1">{
+        filter := bson.M{"uuid": postID}
+        deletedCount, err := p.collection.DeleteOne(ctx, filter)
+        if err != nil </span><span class="cov8" title="1">{
+                return err
+        }</span>
+        <span class="cov8" title="1">if deletedCount == 0 </span><span class="cov8" title="1">{
+                return errs.ErrPostNotFound
+        }</span>
+
+        <span class="cov8" title="1">return nil</span>
+}
+
+func (p *PostRepoMongoDB) AddComment(ctx context.Context, post *posts.Post, comment posts.Comment) (*posts.Post, error) <span class="cov8" title="1">{
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov8" title="1">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov8" title="1">newComment := post.AddComment(*author, comment.Body)
+        if _, err := p.collection.UpdateOne(
+                ctx,
+                bson.M{"uuid": post.ID},
+                bson.M{"$push": bson.M{"comments": newComment}},
+        ); err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return post, nil</span>
+}
+
+func (p *PostRepoMongoDB) DeleteComment(ctx context.Context, post *posts.Post, commentID users.ID) (*posts.Post, error) <span class="cov8" title="1">{
+        source := "DeleteComment"
+        if err := post.DeleteComment(commentID); err != nil </span><span class="cov8" title="1">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov8" title="1">if _, err := p.collection.UpdateOne(
+                ctx,
+                bson.M{"uuid": post.ID},
+                bson.M{"$pull": bson.M{"comments": bson.M{"uuid": commentID}}},
+        ); err != nil </span><span class="cov8" title="1">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov8" title="1">return post, nil</span>
+}
+
+func (p *PostRepoMongoDB) Upvote(ctx context.Context, post *posts.Post) (*posts.Post, error) <span class="cov8" title="1">{
+        source := "Upvote"
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov8" title="1">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov8" title="1">newVote, created := post.Upvote(author.ID)
+        if !created </span><span class="cov8" title="1">{
+                filter := bson.M{
+                        "uuid":       post.ID,
+                        "votes.user": newVote.UserID,
+                }
+                update := bson.M{
+                        "$set": bson.M{
+                                "votes.$.vote":     newVote.Vote,
+                                "upvotePercentage": post.UpvotePercentage,
+                                "score":            post.Score,
+                        },
+                }
+                if _, err := p.collection.UpdateOne(ctx, filter, update); err != nil </span><span class="cov8" title="1">{
+                        return nil, errors.Wrap(err, source)
+                }</span>
+
+                <span class="cov8" title="1">return post, nil</span>
+        }
+
+        <span class="cov8" title="1">filter := bson.M{"uuid": post.ID}
+        update := bson.M{
+                "$push": bson.M{
+                        "votes": newVote,
+                },
+                "$set": bson.M{
+                        "upvotePercentage": post.UpvotePercentage,
+                        "score":            post.Score,
+                },
+        }
+        if _, err := p.collection.UpdateOne(ctx, filter, update); err != nil </span><span class="cov8" title="1">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov8" title="1">return post, nil</span>
+}
+
+func (p *PostRepoMongoDB) Downvote(ctx context.Context, post *posts.Post) (*posts.Post, error) <span class="cov8" title="1">{
+        source := "Downvote"
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov8" title="1">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov8" title="1">filter := bson.M{"uuid": post.ID}
+        newVote, created := post.Downvote(author.ID)
+        if !created </span><span class="cov8" title="1">{
+                filter["votes.user"] = newVote.UserID
+                update := bson.M{
+                        "$set": bson.M{
+                                "votes.$.vote":     newVote.Vote,
+                                "upvotePercentage": post.UpvotePercentage,
+                                "score":            post.Score,
+                        },
+                }
+
+                if _, err := p.collection.UpdateOne(ctx, filter, update); err != nil </span><span class="cov8" title="1">{
+                        return nil, errors.Wrap(err, source)
+                }</span>
+
+                <span class="cov8" title="1">return post, nil</span>
+        }
+
+        <span class="cov8" title="1">update := bson.M{
+                "$push": bson.M{
+                        "votes": newVote,
+                },
+                "$set": bson.M{
+                        "upvotePercentage": post.UpvotePercentage,
+                        "score":            post.Score,
+                },
+        }
+        if _, err := p.collection.UpdateOne(ctx, filter, update); err != nil </span><span class="cov8" title="1">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov8" title="1">return post, nil</span>
+}
+
+func (p *PostRepoMongoDB) Unvote(ctx context.Context, post *posts.Post) (*posts.Post, error) <span class="cov8" title="1">{
+        source := "Unvote"
+        author, ok := ctx.Value(jwt.Payload).(*jwt.TokenPayload)
+        if !ok </span><span class="cov8" title="1">{
+                return nil, errs.ErrBadPayload
+        }</span>
+
+        <span class="cov8" title="1">if err := post.Unvote(author.ID); err != nil </span><span class="cov8" title="1">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov8" title="1">filter := bson.M{"uuid": post.ID}
+        update := bson.M{
+                "$pull": bson.M{
+                        "votes": bson.M{
+                                "user": author.ID,
+                        },
+                },
+                "$set": bson.M{
+                        "upvotePercentage": post.UpvotePercentage,
+                        "score":            post.Score,
+                },
+        }
+        if _, err := p.collection.UpdateOne(ctx, filter, update); err != nil </span><span class="cov8" title="1">{
+                return nil, errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov8" title="1">return post, nil</span>
+}
+
+func (p *PostRepoMongoDB) UpdateViews(ctx context.Context, postID users.ID) error <span class="cov8" title="1">{
+        source := "UpdateViews"
+        filter := bson.M{"uuid": postID}
+        update := bson.M{"$inc": bson.M{"views": 1}}
+        if _, err := p.collection.UpdateOne(ctx, filter, update); err != nil </span><span class="cov8" title="1">{
+                return errors.Wrap(err, source)
+        }</span>
+
+        <span class="cov8" title="1">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file23" style="display: none">package storage
+
+import (
+        "context"
+        "encoding/json"
+        "fmt"
+
+        "github.com/go-redis/redis"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+)
+
+type SessionRepoRedis struct {
+        rdb *redis.Client
+}
+
+func NewSessionRepoRedis(client *redis.Client) *SessionRepoRedis <span class="cov0" title="0">{
+        return &amp;SessionRepoRedis{
+                rdb: client,
+        }
+}</span>
+
+func (s *SessionRepoRedis) CreateSession(ctx context.Context, session *jwt.Session, payload *jwt.TokenPayload) (*jwt.Session, error) <span class="cov0" title="0">{ //nolint:unparam
+        key := session.Token
+        value, err := json.Marshal(payload)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov0" title="0">result, err := s.rdb.Set(key, value, jwt.SessLifespan).Result()
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov0" title="0">if result != "OK" </span><span class="cov0" title="0">{
+                return nil, fmt.Errorf("result is not OK. Actual value: %s", result)
+        }</span>
+
+        <span class="cov0" title="0">return session, nil</span>
+}
+
+func (s *SessionRepoRedis) CheckSession(ctx context.Context, sess *jwt.Session) (*jwt.TokenPayload, error) <span class="cov0" title="0">{ //nolint:unparam
+        key := sess.Token
+        val, err := s.rdb.Get(key).Result()
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">payload := &amp;jwt.TokenPayload{}
+        if err = json.Unmarshal([]byte(val), payload); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">return payload, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file24" style="display: none">package storage
+
+import (
+        "context"
+        "database/sql"
+
+        "github.com/pkg/errors"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+type UserRepoMySQL struct {
+        db *sql.DB
+}
+
+func NewUserRepoMySQL(db *sql.DB) *UserRepoMySQL <span class="cov8" title="1">{
+        return &amp;UserRepoMySQL{
+                db: db,
+        }
+}</span>
+
+func (repo *UserRepoMySQL) Authorize(ctx context.Context, authData users.AuthUserInfo) (*users.User, error) <span class="cov8" title="1">{ //nolint:unparam
+        source := "Authorize"
+        user := &amp;users.User{}
+        err := repo.db.
+                QueryRow(
+                        "SELECT uuid, login, password FROM users WHERE login = ?",
+                        authData.Login,
+                ).Scan(&amp;user.ID, &amp;user.Username, &amp;user.Password)
+
+        switch </span>{
+        case errors.Is(err, sql.ErrNoRows):<span class="cov8" title="1">
+                return nil, errors.Wrap(errs.ErrNoUser, source)</span>
+        case err != nil:<span class="cov8" title="1">
+                return nil, err</span>
+        }
+
+        <span class="cov8" title="1">if user.Password != authData.Password </span><span class="cov8" title="1">{
+                return nil, errors.Wrap(errs.ErrBadPass, source)
+        }</span>
+
+        <span class="cov8" title="1">return user, nil</span>
+}
+
+func (repo *UserRepoMySQL) RegisterUser(ctx context.Context, authData users.AuthUserInfo) (*users.User, error) <span class="cov8" title="1">{ //nolint:unparam
+        source := "RegisterUser"
+        var userExists bool
+        err := repo.db.QueryRow(
+                "SELECT EXISTS(SELECT 1 FROM users WHERE login = ?)",
+                authData.Login,
+        ).Scan(&amp;userExists)
+
+        switch </span>{
+        case err != nil:<span class="cov8" title="1">
+                return nil, err</span>
+        case userExists:<span class="cov8" title="1">
+                return nil, errors.Wrap(errs.ErrUserExists, source)</span>
+        }
+
+        <span class="cov8" title="1">newUser, err := repo.createUser(authData)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return newUser, nil</span>
+}
+
+func (repo *UserRepoMySQL) createUser(credentials users.AuthUserInfo) (*users.User, error) <span class="cov8" title="1">{
+        newUser := users.NewUser(credentials)
+        if _, err := repo.db.Exec(
+                "INSERT INTO users (`uuid`, `login`, `password`) VALUES (?, ?, ?)",
+                newUser.ID,
+                newUser.Username,
+                newUser.Password,
+        ); err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">return newUser, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file25" style="display: none">package middleware
+
+import (
+        "context"
+        "net/http"
+        "regexp"
+        "slices"
+        "strings"
+
+        "go.uber.org/zap"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        "github.com/Benzogang-Tape/Reddit/internal/service"
+)
+
+type HTTPMethods []string
+type Endpoints map[*regexp.Regexp]HTTPMethods
+
+var (
+        authUrls = Endpoints{
+                regexp.MustCompile(`^/api/posts$`):                            {http.MethodPost},
+                regexp.MustCompile(`^/api/post/[0-9a-fA-F-]+$`):               {http.MethodPost},
+                regexp.MustCompile(`^/api/post/[0-9a-fA-F-]+/[0-9a-fA-F-]+$`): {http.MethodDelete},
+                regexp.MustCompile(`^/api/post/[0-9a-fA-F-]+/upvote$`):        {http.MethodGet},
+                regexp.MustCompile(`^/api/post/[0-9a-fA-F-]+/downvote$`):      {http.MethodGet},
+                regexp.MustCompile(`^/api/post/[0-9a-fA-F-]+/unvote$`):        {http.MethodGet},
+                regexp.MustCompile(`^/api/post/[0-9a-fA-F-]+$`):               {http.MethodDelete},
+        }
+)
+
+func Auth(next http.Handler, sessMngr service.SessionAPI, logger *zap.SugaredLogger) http.Handler <span class="cov0" title="0">{
+        return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) </span><span class="cov0" title="0">{
+                var canBeWithoutAuth = true
+                for endpoint, methods := range authUrls </span><span class="cov0" title="0">{
+                        if endpoint.MatchString(r.URL.Path) &amp;&amp; slices.Contains(methods, r.Method) </span><span class="cov0" title="0">{
+                                canBeWithoutAuth = false
+                                break</span>
+                        }
+                }
+                <span class="cov0" title="0">if canBeWithoutAuth </span><span class="cov0" title="0">{
+                        next.ServeHTTP(w, r)
+                        return
+                }</span>
+
+                <span class="cov0" title="0">session := &amp;jwt.Session{
+                        Token: strings.Split(r.Header.Get("Authorization"), " ")[1],
+                }
+                payload, err := sessMngr.Verify(r.Context(), session)
+                if err != nil </span><span class="cov0" title="0">{
+                        logger.Warnw("Authorization failed",
+                                "reason", err.Error(),
+                                "remote_addr", r.RemoteAddr,
+                                "url", r.URL.Path,
+                        )
+
+                        http.Redirect(w, r, "/api/posts/", http.StatusFound)
+                        return
+                }</span>
+
+                <span class="cov0" title="0">next.ServeHTTP(w, r.WithContext(context.WithValue(r.Context(), jwt.Payload, payload)))</span>
+        })
+}
+</pre>
+		
+		<pre class="file" id="file26" style="display: none">package middleware
+
+import (
+        "net/http"
+
+        "go.uber.org/zap"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+)
+
+func Panic(next http.Handler, logger *zap.SugaredLogger) http.Handler <span class="cov0" title="0">{
+        return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) </span><span class="cov0" title="0">{
+                defer func() </span><span class="cov0" title="0">{
+                        if err := recover(); err != nil </span><span class="cov0" title="0">{
+                                logger.Errorw("panicMiddleware",
+                                        "method", r.Method,
+                                        "remote_addr", r.RemoteAddr,
+                                        "url", r.URL.Path,
+                                )
+
+                                http.Error(w, errs.ErrInternalServerError.Error(), http.StatusInternalServerError)
+                                logger.Infow("recovered", "cause", err)
+                        }</span>
+                }()
+                <span class="cov0" title="0">next.ServeHTTP(w, r)</span>
+        })
+}
+</pre>
+		
+		<pre class="file" id="file27" style="display: none">package rest
+
+import (
+        "context"
+        "encoding/json"
+        "errors"
+        "io"
+        "net/http"
+        "unicode/utf8"
+
+        "github.com/gorilla/mux"
+        "go.uber.org/zap"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/httpresp"
+        "github.com/Benzogang-Tape/Reddit/internal/models/posts"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+)
+
+//go:generate mockgen -source=post.go -destination=../../storage/mocks/posts_repo_mongoDB_mock.go -package=mocks PostAPI
+type PostAPI interface {
+        GetAllPosts(ctx context.Context) ([]*posts.Post, error)
+        GetPostsByCategory(ctx context.Context, postCategory posts.PostCategory) ([]*posts.Post, error)
+        GetPostsByUser(ctx context.Context, userLogin users.Username) ([]*posts.Post, error)
+        GetPostByID(ctx context.Context, postID users.ID) (*posts.Post, error)
+        CreatePost(ctx context.Context, postPayload posts.PostPayload) (*posts.Post, error)
+        DeletePost(ctx context.Context, postID users.ID) error
+        AddComment(ctx context.Context, postID users.ID, comment posts.Comment) (*posts.Post, error)
+        DeleteComment(ctx context.Context, postID, commentID users.ID) (*posts.Post, error)
+        Upvote(ctx context.Context, postID users.ID) (*posts.Post, error)
+        Downvote(ctx context.Context, postID users.ID) (*posts.Post, error)
+        Unvote(ctx context.Context, postID users.ID) (*posts.Post, error)
+}
+
+type PostHandler struct {
+        logger  *zap.SugaredLogger
+        service PostAPI
+}
+
+func NewPostHandler(p PostAPI, logger *zap.SugaredLogger) *PostHandler <span class="cov8" title="1">{
+        return &amp;PostHandler{
+                logger:  logger,
+                service: p,
+        }
+}</span>
+
+func validateID(alias string, params map[string]string) (id users.ID, err error) <span class="cov8" title="1">{
+        extractedID := params[alias]
+        if utf8.RuneCountInString(extractedID) != posts.UUIDLength </span><span class="cov8" title="1">{
+                return id, errs.ErrBadID
+        }</span>
+
+        <span class="cov8" title="1">return users.ID(extractedID), nil</span>
+}
+
+// GetAllPosts godoc
+//
+//        @Summary                Get all posts
+//        @Description        Get a list of posts of all users and threads
+//        @Tags                        getting-posts
+//        @ID                                get-all-posts
+//        @Produce                json
+//        @Success                200        {array}                posts.Post                "Posts successfully received"
+//        @Failure                500        {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /posts/ [get]
+func (p *PostHandler) GetAllPosts(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        postList, err := p.service.GetAllPosts(r.Context())
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">sendResponse(postList, w)</span>
+}
+
+// CreatePost godoc
+//
+//        @Summary                Create a post
+//        @Description        Create a post of a specific type, category, and content
+//        @Security                ApiKeyAuth
+//        @Tags                        managing-posts
+//        @ID                                create-post
+//        @Accept                        json
+//        @Produce                json
+//        @Param                        post_payload        body                posts.PostPayload        true        "Post data"        validate(required)
+//        @Success                201                                {object}        posts.Post                        "Post successfully created"
+//        @Failure                400                                "Bad payload"
+//        @Failure                422                                {object}        errs.ComplexErrArr        "Bad content"
+//        @Failure                500                                {object}        errs.SimpleErr                "Internal server error"
+//        @Router                        /posts/ [post]
+func (p *PostHandler) CreatePost(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        defer r.Body.Close()
+        body, err := io.ReadAll(r.Body)
+        if err != nil </span><span class="cov8" title="1">{
+                w.WriteHeader(http.StatusBadRequest)
+                return
+        }</span>
+        <span class="cov8" title="1">postPayload := posts.PostPayload{}
+        if err = json.Unmarshal(body, &amp;postPayload); err != nil </span><span class="cov8" title="1">{
+                w.WriteHeader(http.StatusBadRequest)
+                return
+        }</span>
+
+        <span class="cov8" title="1">newPost, err := p.service.CreatePost(r.Context(), postPayload)
+        switch </span>{
+        case errors.Is(err, errs.ErrInvalidURL):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusUnprocessableEntity, errs.NewComplexErrArr(errs.ComplexErr{
+                        Location: "body",
+                        Param:    "url",
+                        Value:    postPayload.URL,
+                        Msg:      "is invalid",
+                }))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">sendResponse(newPost, w, httpresp.WithStatusCode(http.StatusCreated))</span>
+}
+
+// GetPostByID godoc
+//
+//        @Summary                Get a certain post
+//        @Description        Get information on a specific post by id
+//        @Tags                        getting-posts
+//        @ID                                get-post-by-id
+//        @Produce                json
+//        @Param                        POST_ID        path                string                        true        "Post uuid"        minlength(36)        maxlength(36)
+//        @Success                200                {object}        posts.Post                "Post successfully received"
+//        @Failure                400                {object}        errs.SimpleErr        "Bad post id"
+//        @Failure                404                {object}        errs.SimpleErr        "No posts with the provided id were found"
+//        @Failure                500                {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /post/{POST_ID} [get]
+func (p *PostHandler) GetPostByID(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        postID, err := validateID("POST_ID", mux.Vars(r))
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrInvalidPostID.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">post, err := p.service.GetPostByID(r.Context(), postID)
+        switch </span>{
+        case errors.Is(err, errs.ErrPostNotFound):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusNotFound, errs.NewSimpleErr(errs.ErrPostNotFound.Error()))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">sendResponse(post, w)</span>
+}
+
+// GetPostsByCategory godoc
+//
+//        @Summary                Get posts by category
+//        @Description        Get all posts belonging to a certain category
+//        @Tags                        getting-posts
+//        @ID                                get-posts-by-category
+//        @Produce                json
+//        @Param                        CATEGORY_NAME        path                string                        true        "Category name"
+//        @Success                200                                {array}                posts.Post                "Posts successfully received"
+//        @Failure                400                                {object}        errs.SimpleErr        "Bad category(doesn't exist)"
+//        @Failure                500                                {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /posts/{CATEGORY_NAME} [get]
+func (p *PostHandler) GetPostsByCategory(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        postCategory, err := posts.StringToPostCategory(mux.Vars(r)["CATEGORY_NAME"])
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrInvalidCategory.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">postList, err := p.service.GetPostsByCategory(r.Context(), postCategory)
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">sendResponse(postList, w)</span>
+}
+
+// GetPostsByUser godoc
+//
+//        @Summary                Get posts by user
+//        @Description        Get all posts of a certain user by his/her username
+//        @Tags                        getting-posts
+//        @ID                                get-posts-by-user
+//        @Produce                json
+//        @Param                        USER_LOGIN        path                string                        true        "Username of user"
+//        @Success                200                        {array}                posts.Post                "Posts successfully received"
+//        @Failure                400                        {object}        errs.SimpleErr        "Bad username(doesn't exist)"
+//        @Failure                500                        {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /user/{USER_LOGIN} [get]
+func (p *PostHandler) GetPostsByUser(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        userLogin := users.Username(mux.Vars(r)["USER_LOGIN"])
+        postList, err := p.service.GetPostsByUser(r.Context(), userLogin)
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">sendResponse(postList, w)</span>
+}
+
+// DeletePost godoc
+//
+//        @Summary                Delete a post
+//        @Description        Delete a specific post by its id
+//        @Security                ApiKeyAuth
+//        @Tags                        managing-posts
+//        @ID                                delete-post
+//        @Param                        POST_ID        path                string                        true        "Post uuid"        minlength(36)        maxlength(36)
+//        @Success                200                {object}        errs.SimpleErr        "Post successfully deleted"
+//        @Failure                400                {object}        errs.SimpleErr        "Bad post id"
+//        @Failure                404                {object}        errs.SimpleErr        "No posts with the provided id were found"
+//        @Failure                500                {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /post/{POST_ID} [delete]
+func (p *PostHandler) DeletePost(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        postID, err := validateID("POST_ID", mux.Vars(r))
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrInvalidPostID.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = p.service.DeletePost(r.Context(), postID)
+        switch </span>{
+        case errors.Is(err, errs.ErrPostNotFound):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusNotFound, errs.NewSimpleErr(errs.ErrPostNotFound.Error()))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">sendErrorResponse(w, http.StatusOK, errs.NewSimpleErr("success"))</span>
+}
+
+// Upvote godoc
+//
+//        @Summary                Vote up on a post
+//        @Description        Increase post rating by 1 vote
+//        @Security                ApiKeyAuth
+//        @Tags                        voting-posts
+//        @ID                                upvote-post
+//        @Produce                json
+//        @Param                        POST_ID        path                string                        true        "Post uuid"        minlength(36)        maxlength(36)
+//        @Success                200                {object}        posts.Post                "Successfully upvoted"
+//        @Failure                400                {object}        errs.SimpleErr        "Bad post id"
+//        @Failure                404                {object}        errs.SimpleErr        "No posts with the provided id were found"
+//        @Failure                500                {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /post/{POST_ID}/upvote [get]
+func (p *PostHandler) Upvote(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        postID, err := validateID("POST_ID", mux.Vars(r))
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrInvalidPostID.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">post, err := p.service.Upvote(r.Context(), postID)
+        switch </span>{
+        case errors.Is(err, errs.ErrPostNotFound):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusNotFound, errs.NewSimpleErr(errs.ErrPostNotFound.Error()))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">sendResponse(post, w)</span>
+}
+
+// Downvote godoc
+//
+//        @Summary                Vote down on a post
+//        @Description        Decrease post rating by 1 vote
+//        @Security                ApiKeyAuth
+//        @Tags                        voting-posts
+//        @ID                                downvote-post
+//        @Produce                json
+//        @Param                        POST_ID        path                string                        true        "Post uuid"        minlength(36)        maxlength(36)
+//        @Success                200                {object}        posts.Post                "Successfully downvoted"
+//        @Failure                400                {object}        errs.SimpleErr        "Bad post id"
+//        @Failure                404                {object}        errs.SimpleErr        "No posts with the provided id were found"
+//        @Failure                500                {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /post/{POST_ID}/downvote [get]
+func (p *PostHandler) Downvote(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        postID, err := validateID("POST_ID", mux.Vars(r))
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrInvalidPostID.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">post, err := p.service.Downvote(r.Context(), postID)
+        switch </span>{
+        case errors.Is(err, errs.ErrPostNotFound):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusNotFound, errs.NewSimpleErr(errs.ErrPostNotFound.Error()))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">sendResponse(post, w)</span>
+}
+
+// Unvote godoc
+//
+//        @Summary                Cancel your vote
+//        @Description        Withdraw your vote from the post
+//        @Security                ApiKeyAuth
+//        @Tags                        voting-posts
+//        @ID                                unvote-post
+//        @Produce                json
+//        @Param                        POST_ID        path                string                        true        "Post uuid"        minlength(36)        maxlength(36)
+//        @Success                200                {object}        posts.Post                "Successfully unvoted"
+//        @Failure                400                {object}        errs.SimpleErr        "Bad post id"
+//        @Failure                404                {object}        errs.SimpleErr        "No posts with the provided id were found"
+//        @Failure                500                {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /post/{POST_ID}/unvote [get]
+func (p *PostHandler) Unvote(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        postID, err := validateID("POST_ID", mux.Vars(r))
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrInvalidPostID.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">post, err := p.service.Unvote(r.Context(), postID)
+        switch </span>{
+        case errors.Is(err, errs.ErrPostNotFound):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusNotFound, errs.NewSimpleErr(errs.ErrPostNotFound.Error()))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">sendResponse(post, w)</span>
+}
+
+// AddComment godoc
+//
+//        @Summary                Comment on the post
+//        @Description        Leave a comment under a certain post
+//        @Security                ApiKeyAuth
+//        @Tags                        commenting-posts
+//        @ID                                add-comment
+//        @Accept                        json
+//        @Produce                json
+//        @Param                        comment_payload        body                posts.Comment                true        "Comment data"        validate(required)
+//        @Param                        POST_ID                        path                string                                true        "Post uuid"                minlength(36)        maxlength(36)
+//        @Success                201                                {object}        posts.Post                        "Comment successfully left"
+//        @Failure                400                                {object}        errs.SimpleErr                "Bad payload"
+//        @Failure                404                                {object}        errs.SimpleErr                "No posts with the provided id were found"
+//        @Failure                422                                {object}        errs.ComplexErrArr        "Bad content"
+//        @Failure                500                                {object}        errs.SimpleErr                "Internal server error"
+//        @Router                        /posts/{POST_ID} [post]
+func (p *PostHandler) AddComment(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        defer r.Body.Close()
+        body, err := io.ReadAll(r.Body)
+        if err != nil </span><span class="cov8" title="1">{
+                w.WriteHeader(http.StatusBadRequest)
+                return
+        }</span>
+        <span class="cov8" title="1">comment := posts.Comment{}
+        if err = json.Unmarshal(body, &amp;comment); err != nil </span><span class="cov8" title="1">{
+                w.WriteHeader(http.StatusBadRequest)
+                return
+        }</span>
+
+        <span class="cov8" title="1">postID, err := validateID("POST_ID", mux.Vars(r))
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrInvalidPostID.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">post, err := p.service.AddComment(r.Context(), postID, comment)
+        switch </span>{
+        case errors.Is(err, errs.ErrBadCommentBody):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusUnprocessableEntity, errs.NewComplexErrArr(errs.ComplexErr{
+                        Location: "body",
+                        Param:    "comment",
+                        Msg:      "is required",
+                }))
+                return</span>
+        case errors.Is(err, errs.ErrPostNotFound):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusNotFound, errs.NewSimpleErr(errs.ErrPostNotFound.Error()))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">sendResponse(post, w, httpresp.WithStatusCode(http.StatusCreated))</span>
+}
+
+// DeleteComment godoc
+//
+//        @Summary                Delete comment
+//        @Description        Delete a certain comment on a certain post
+//        @Security                ApiKeyAuth
+//        @Tags                        commenting-posts
+//        @ID                                delete-comment
+//        @Accept                        json
+//        @Produce                json
+//        @Param                        POST_ID                path                string                        true        "Post uuid"                minlength(36)        maxlength(36)
+//        @Param                        COMMENT_ID        path                string                        true        "Comment uuid"        minlength(36)        maxlength(36)
+//        @Success                200                        {object}        posts.Post                "Comment successfully deleted"
+//        @Failure                400                        {object}        errs.SimpleErr        "Bad uuid"
+//        @Failure                404                        {object}        errs.SimpleErr        "No posts or comment with the provided id were found"
+//        @Failure                500                        {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /posts/{POST_ID}/{COMMENT_ID} [delete]
+func (p *PostHandler) DeleteComment(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        params := mux.Vars(r)
+        postID, err := validateID("POST_ID", params)
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrInvalidPostID.Error()))
+                return
+        }</span>
+        <span class="cov8" title="1">commentID, err := validateID("COMMENT_ID", params)
+        if err != nil </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrInvalidCommentID.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">post, err := p.service.DeleteComment(r.Context(), postID, commentID)
+        switch </span>{
+        case errors.Is(err, errs.ErrPostNotFound):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusNotFound, errs.NewSimpleErr(errs.ErrPostNotFound.Error()))
+                return</span>
+        case errors.Is(err, errs.ErrCommentNotFound):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusNotFound, errs.NewSimpleErr(errs.ErrCommentNotFound.Error()))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">sendResponse(post, w)</span>
+
+}
+</pre>
+		
+		<pre class="file" id="file28" style="display: none">package rest
+
+import (
+        "html/template"
+        "net/http"
+
+        "github.com/gorilla/mux"
+        httpSwagger "github.com/swaggo/http-swagger"
+        "go.uber.org/zap"
+
+        _ "github.com/Benzogang-Tape/Reddit/docs"
+        "github.com/Benzogang-Tape/Reddit/internal/transport/middleware"
+        mdwr "github.com/Benzogang-Tape/Reddit/pkg/middleware"
+)
+
+type AppRouter struct {
+        userHandler *UserHandler
+        postHandler *PostHandler
+}
+
+func NewAppRouter(u *UserHandler, p *PostHandler) *AppRouter <span class="cov0" title="0">{
+        return &amp;AppRouter{
+                userHandler: u,
+                postHandler: p,
+        }
+}</span>
+
+func (rtr *AppRouter) InitRouter(logger *zap.SugaredLogger) http.Handler <span class="cov0" title="0">{
+        templates := template.Must(template.ParseGlob("./static/*/*"))
+
+        r := mux.NewRouter()
+        r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) </span><span class="cov0" title="0">{
+                err := templates.ExecuteTemplate(w, "index.html", nil)
+                if err != nil </span><span class="cov0" title="0">{
+                        http.Error(w, `Template error`, http.StatusInternalServerError)
+                        return
+                }</span>
+        }).Methods(http.MethodGet)
+
+        <span class="cov0" title="0">r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+        r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+
+        r.HandleFunc("/api/register", rtr.userHandler.RegisterUser).Methods(http.MethodPost)
+        r.HandleFunc("/api/login", rtr.userHandler.LoginUser).Methods(http.MethodPost)
+        r.HandleFunc("/api/posts/", rtr.postHandler.GetAllPosts).Methods(http.MethodGet)
+        r.HandleFunc("/api/posts", rtr.postHandler.CreatePost).Methods(http.MethodPost)
+        r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+$}", rtr.postHandler.GetPostByID).Methods(http.MethodGet)
+        r.HandleFunc("/api/posts/{CATEGORY_NAME:[0-9a-zA-Z_-]+$}", rtr.postHandler.GetPostsByCategory).Methods(http.MethodGet)
+        r.HandleFunc("/api/user/{USER_LOGIN:[0-9a-zA-Z_-]+$}", rtr.postHandler.GetPostsByUser).Methods(http.MethodGet)
+        r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+$}", rtr.postHandler.DeletePost).Methods(http.MethodDelete)
+        r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+}/upvote", rtr.postHandler.Upvote).Methods(http.MethodGet)
+        r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+}/downvote", rtr.postHandler.Downvote).Methods(http.MethodGet)
+        r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+}/unvote", rtr.postHandler.Unvote).Methods(http.MethodGet)
+        r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+$}", rtr.postHandler.AddComment).Methods(http.MethodPost)
+        r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+}/{COMMENT_ID:[0-9a-fA-F-]+$}", rtr.postHandler.DeleteComment).Methods(http.MethodDelete)
+
+        router := middleware.Auth(r, rtr.userHandler.sessMngr, logger)
+        router = mdwr.AccessLog(logger, router)
+        router = middleware.Panic(router, logger)
+
+        return router</span>
+}
+</pre>
+		
+		<pre class="file" id="file29" style="display: none">package rest
+
+import (
+        "encoding/json"
+        "net/http"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/httpresp"
+)
+
+const DefaultContentType = "application/json; charset=utf-8"
+
+func sendResponse(data any, w http.ResponseWriter, opts ...httpresp.OptionFunc) <span class="cov8" title="1">{
+        response := &amp;httpresp.Response{
+                Data:       data,
+                StatusCode: http.StatusOK,
+        }
+
+        for _, opt := range opts </span><span class="cov8" title="1">{
+                opt(response)
+        }</span>
+
+        <span class="cov8" title="1">send(response, w)</span>
+}
+
+func sendErrorResponse(w http.ResponseWriter, statusCode int, errMsg errs.RespError) <span class="cov8" title="1">{
+        resp, err := errMsg.Marshal()
+        if err != nil </span><span class="cov0" title="0">{
+                w.WriteHeader(http.StatusInternalServerError)
+                return
+        }</span>
+
+        <span class="cov8" title="1">w.Header().Set("Content-Type", DefaultContentType)
+        w.WriteHeader(statusCode)
+        if _, err = w.Write(resp); err != nil </span><span class="cov0" title="0">{
+                w.WriteHeader(http.StatusInternalServerError)
+        }</span>
+}
+
+func send(r *httpresp.Response, w http.ResponseWriter) <span class="cov8" title="1">{
+        resp, err := json.Marshal(r.Data)
+        if err != nil </span><span class="cov0" title="0">{
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrResponseError.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">if r.ContentType != "" </span><span class="cov0" title="0">{
+                w.Header().Set("Content-Type", r.ContentType)
+        }</span> else<span class="cov8" title="1"> {
+                w.Header().Set("Content-Type", DefaultContentType)
+        }</span>
+
+        <span class="cov8" title="1">w.WriteHeader(r.StatusCode)
+        if _, err := w.Write(resp); err != nil </span><span class="cov0" title="0">{
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrResponseError.Error()))
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file30" style="display: none">package rest
+
+import (
+        "context"
+        "encoding/json"
+        "errors"
+        "io"
+        "net/http"
+
+        "go.uber.org/zap"
+
+        "github.com/Benzogang-Tape/Reddit/internal/models/errs"
+        "github.com/Benzogang-Tape/Reddit/internal/models/httpresp"
+        "github.com/Benzogang-Tape/Reddit/internal/models/jwt"
+        "github.com/Benzogang-Tape/Reddit/internal/models/users"
+        "github.com/Benzogang-Tape/Reddit/internal/service"
+)
+
+//go:generate mockgen -source=user.go -destination=../../storage/mocks/users_repo_mySQL_mock.go -package=mocks UserAPI
+type UserAPI interface {
+        Register(ctx context.Context, authData users.AuthUserInfo) (*jwt.TokenPayload, error)
+        Authorize(ctx context.Context, authData users.AuthUserInfo) (*jwt.TokenPayload, error)
+}
+
+type UserHandler struct {
+        logger   *zap.SugaredLogger
+        service  UserAPI
+        sessMngr service.SessionAPI
+}
+
+func NewUserHandler(u UserAPI, s service.SessionAPI, logger *zap.SugaredLogger) *UserHandler <span class="cov8" title="1">{
+        return &amp;UserHandler{
+                logger:   logger,
+                service:  u,
+                sessMngr: s,
+        }
+}</span>
+
+// RegisterUser godoc
+//
+//        @Summary                Register a new user
+//        @Description        Register in reddit-clone app
+//        @Tags                        auth
+//        @ID                                register-user
+//        @Accept                        json
+//        @Produce                json
+//        @Param                        credentials        body                users.AuthUserInfo        true        "User credentials for registration"
+//        @Success                201                        {object}        jwt.Session                        "User registered successfully"
+//        @Failure                400                        "Bad request"
+//        @Failure                422                        {object}        errs.ComplexErrArr        "User already exists"
+//        @Failure                500                        {object}        errs.SimpleErr                "Internal server error"
+//        @Router                        /register [post]
+func (h *UserHandler) RegisterUser(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        defer r.Body.Close()
+        body, err := io.ReadAll(r.Body)
+        if err != nil </span><span class="cov8" title="1">{
+                w.WriteHeader(http.StatusBadRequest)
+                return
+        }</span>
+        <span class="cov8" title="1">credentials := users.AuthUserInfo{}
+        if err = json.Unmarshal(body, &amp;credentials); err != nil </span><span class="cov8" title="1">{
+                w.WriteHeader(http.StatusBadRequest)
+                return
+        }</span>
+
+        <span class="cov8" title="1">payload, err := h.service.Register(r.Context(), credentials)
+        switch </span>{
+        case errors.Is(err, errs.ErrUserExists):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusUnprocessableEntity, errs.NewComplexErrArr(errs.ComplexErr{
+                        Location: `body`,
+                        Param:    `username`,
+                        Value:    `1`,
+                        Msg:      `already exists`,
+                }))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">h.newSession(w, r.WithContext(context.WithValue(r.Context(), jwt.Payload, *payload)), http.StatusCreated)
+        h.logger.Infow("New user has registered",
+                "login", credentials.Login,
+                "remote_addr", r.RemoteAddr,
+                "url", r.URL.Path,
+        )</span>
+}
+
+// LoginUser godoc
+//
+//        @Summary                Login to your account
+//        @Description        Login via login and password in reddit-clone app
+//        @Tags                        auth
+//        @ID                                login-user
+//        @Accept                        json
+//        @Produce                json
+//        @Param                        credentials        body                users.AuthUserInfo        true        "User credentials for authentication"
+//        @Success                200                        {object}        jwt.Session                        "User authorized successfully"
+//        @Failure                400                        "Bad request"
+//        @Failure                401                        {object}        errs.SimpleErr        "Bad login or password"
+//        @Failure                500                        {object}        errs.SimpleErr        "Internal server error"
+//        @Router                        /login [post]
+func (h *UserHandler) LoginUser(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        defer r.Body.Close()
+        body, err := io.ReadAll(r.Body)
+        if err != nil </span><span class="cov8" title="1">{
+                w.WriteHeader(http.StatusBadRequest)
+                return
+        }</span>
+        <span class="cov8" title="1">credentials := users.AuthUserInfo{}
+        if err = json.Unmarshal(body, &amp;credentials); err != nil </span><span class="cov8" title="1">{
+                w.WriteHeader(http.StatusBadRequest)
+                return
+        }</span>
+
+        <span class="cov8" title="1">payload, err := h.service.Authorize(r.Context(), credentials)
+        switch </span>{
+        case errors.Is(err, errs.ErrNoUser), errors.Is(err, errs.ErrBadPass):<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusUnauthorized, errs.NewSimpleErr(errs.ErrBadPass.Error()))
+                return</span>
+        case err != nil:<span class="cov8" title="1">
+                sendErrorResponse(w, http.StatusInternalServerError, errs.NewSimpleErr(errs.ErrUnknownError.Error()))
+                return</span>
+        }
+
+        <span class="cov8" title="1">h.newSession(w, r.WithContext(context.WithValue(r.Context(), jwt.Payload, *payload)), http.StatusOK)
+        h.logger.Infow("New log in",
+                "login", credentials.Login,
+                "remote_addr", r.RemoteAddr,
+                "url", r.URL.Path,
+        )</span>
+}
+
+func (h *UserHandler) newSession(w http.ResponseWriter, r *http.Request, statusCode int) <span class="cov8" title="1">{
+        if r.Header.Get("Content-Type") != "application/json" </span><span class="cov8" title="1">{
+                sendErrorResponse(w, http.StatusBadRequest, errs.NewSimpleErr(errs.ErrUnknownPayload.Error()))
+                return
+        }</span>
+
+        <span class="cov8" title="1">sess, err := h.sessMngr.New(r.Context())
+        if err != nil </span><span class="cov8" title="1">{
+                w.WriteHeader(http.StatusInternalServerError)
+                return
+        }</span>
+
+        <span class="cov8" title="1">sendResponse(sess, w, httpresp.WithStatusCode(statusCode))</span>
+}
+</pre>
+		
+		<pre class="file" id="file31" style="display: none">package middleware
+
+import (
+        "net/http"
+        "time"
+
+        "go.uber.org/zap"
+)
+
+func AccessLog(logger *zap.SugaredLogger, next http.Handler) http.Handler <span class="cov0" title="0">{
+        return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) </span><span class="cov0" title="0">{
+                start := time.Now()
+                next.ServeHTTP(w, r)
+                logger.Infow("New request",
+                        "method", r.Method,
+                        "remote_addr", r.RemoteAddr,
+                        "url", r.URL.Path,
+                        "time", time.Since(start),
+                )
+        }</span>)
+}
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

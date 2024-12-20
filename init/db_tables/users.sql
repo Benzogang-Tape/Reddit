@@ -14,4 +14,4 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `uuid`, `login`, `password`) VALUES
 (1,	'ffffffff-ffff-ffff-ffff-ffffffffffff',	'admin',	'rootroot'),
-(2,	'8f4a45c5-e8b8-46d6-9c7f-2ba54447175d',	'test_user',	'useruser');
+(2,	'12345678-9abc-def1-2345-6789abcdef12',	'test_user',	'useruser');

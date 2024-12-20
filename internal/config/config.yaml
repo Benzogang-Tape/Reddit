@@ -1,0 +1,30 @@
+# Prioritized lower than environment variables
+APP:
+  PORT: "8080"
+  NAME: redditclone
+
+MYSQL:
+  HOST: "mysql"
+  PORT: "3306"
+  DATABASE: reddit
+  PARAMS: "charset=utf8&interpolateParams=true"
+  USER: "user"
+  PASSWORD: "password"
+  ROOT:
+    PASSWORD: "root_pass"
+
+MONGO:
+  URI: "mongodb://"
+  HOST: "mongodb"
+  INITDB:
+    DATABASE: reddit
+  COLLECTION:
+    POSTS: "posts"
+
+REDIS:
+  HOST: "redis"
+  PORT: "6379"
+  PASSWORD: ""
+
+JWT:
+  SECRET: "super secret key"

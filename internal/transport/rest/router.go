@@ -1,12 +1,16 @@
 package rest
 
 import (
-	"github.com/Benzogang-Tape/Reddit/internal/transport/middleware"
-	mdwr "github.com/Benzogang-Tape/Reddit/pkg/middleware"
-	"github.com/gorilla/mux"
-	"go.uber.org/zap"
 	"html/template"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	httpSwagger "github.com/swaggo/http-swagger"
+	"go.uber.org/zap"
+
+	_ "github.com/Benzogang-Tape/Reddit/docs"
+	"github.com/Benzogang-Tape/Reddit/internal/transport/middleware"
+	mdwr "github.com/Benzogang-Tape/Reddit/pkg/middleware"
 )
 
 type AppRouter struct {
@@ -34,20 +38,10 @@ func (rtr *AppRouter) InitRouter(logger *zap.SugaredLogger) http.Handler {
 	}).Methods(http.MethodGet)
 
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
 
-	// ! may not work
-	// staticHandler := http.StripPrefix("/static/", http.FileServer(http.Dir("./static")))
-	// r.Handle("/static/", staticHandler).Methods("GET")
-
-	// ! Another way to link with static
-	// r := mux.NewRouter()
-	// r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-	// r.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	// 	http.ServeFile(w, r, "./static/html/index.html")
-	// }).Methods("GET")
-
-	r.HandleFunc("/api/register", rtr.userHandler.registerUser).Methods(http.MethodPost)
-	r.HandleFunc("/api/login", rtr.userHandler.loginUser).Methods(http.MethodPost)
+	r.HandleFunc("/api/register", rtr.userHandler.RegisterUser).Methods(http.MethodPost)
+	r.HandleFunc("/api/login", rtr.userHandler.LoginUser).Methods(http.MethodPost)
 	r.HandleFunc("/api/posts/", rtr.postHandler.GetAllPosts).Methods(http.MethodGet)
 	r.HandleFunc("/api/posts", rtr.postHandler.CreatePost).Methods(http.MethodPost)
 	r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+$}", rtr.postHandler.GetPostByID).Methods(http.MethodGet)
@@ -60,7 +54,7 @@ func (rtr *AppRouter) InitRouter(logger *zap.SugaredLogger) http.Handler {
 	r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+$}", rtr.postHandler.AddComment).Methods(http.MethodPost)
 	r.HandleFunc("/api/post/{POST_ID:[0-9a-fA-F-]+}/{COMMENT_ID:[0-9a-fA-F-]+$}", rtr.postHandler.DeleteComment).Methods(http.MethodDelete)
 
-	router := middleware.Auth(r, logger)
+	router := middleware.Auth(r, rtr.userHandler.sessMngr, logger)
 	router = mdwr.AccessLog(logger, router)
 	router = middleware.Panic(router, logger)
 

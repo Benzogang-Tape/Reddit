@@ -287,3 +287,7 @@ fabric.properties
 
 .idea
 #sreenshots/
+coverage/*.out
+.env
+bin/*
+!bin/.gitkeep
