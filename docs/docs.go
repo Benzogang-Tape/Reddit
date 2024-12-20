@@ -339,35 +339,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/posts/": {
-            "get": {
-                "description": "Get a list of posts of all users and threads",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "getting-posts"
-                ],
-                "summary": "Get all posts",
-                "operationId": "get-all-posts",
-                "responses": {
-                    "200": {
-                        "description": "Posts successfully received",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/posts.Post"
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "$ref": "#/definitions/errs.SimpleErr"
-                        }
-                    }
-                }
-            },
+        "/posts": {
             "post": {
                 "security": [
                     {
@@ -411,6 +383,36 @@ const docTemplate = `{
                         "description": "Bad content",
                         "schema": {
                             "$ref": "#/definitions/errs.ComplexErrArr"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/errs.SimpleErr"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/": {
+            "get": {
+                "description": "Get a list of posts of all users and threads",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "getting-posts"
+                ],
+                "summary": "Get all posts",
+                "operationId": "get-all-posts",
+                "responses": {
+                    "200": {
+                        "description": "Posts successfully received",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/posts.Post"
+                            }
                         }
                     },
                     "500": {

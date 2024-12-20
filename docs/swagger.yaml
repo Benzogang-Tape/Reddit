@@ -460,26 +460,7 @@ paths:
       summary: Vote up on a post
       tags:
       - voting-posts
-  /posts/:
-    get:
-      description: Get a list of posts of all users and threads
-      operationId: get-all-posts
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: Posts successfully received
-          schema:
-            items:
-              $ref: '#/definitions/posts.Post'
-            type: array
-        "500":
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/errs.SimpleErr'
-      summary: Get all posts
-      tags:
-      - getting-posts
+  /posts:
     post:
       consumes:
       - application/json
@@ -514,6 +495,26 @@ paths:
       summary: Create a post
       tags:
       - managing-posts
+  /posts/:
+    get:
+      description: Get a list of posts of all users and threads
+      operationId: get-all-posts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Posts successfully received
+          schema:
+            items:
+              $ref: '#/definitions/posts.Post'
+            type: array
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/errs.SimpleErr'
+      summary: Get all posts
+      tags:
+      - getting-posts
   /posts/{CATEGORY_NAME}:
     get:
       description: Get all posts belonging to a certain category
