@@ -2,14 +2,12 @@ name: CI-CD
 
 on:
   push:
-    branches:
-      - [main, master]
+    branches: [main, master]
   pull_request:
-    branches:
-      - [main, master]
-      - types: [opened]
+    branches: [main, master]
+    types: [opened]
 
-env:
+#env:
 
 
 jobs:
@@ -30,7 +28,10 @@ jobs:
         run: go mod tidy
 
       - name: Test with Go
-        run: go test ./... -short -json > test-results.json
+        run: go test ./...
+
+#      - name: Test with Go
+#        run: go test ./... -short -json > test-results.json
 
 #      - name: Upload test results
 #        uses: actions/upload-artifact@v4
