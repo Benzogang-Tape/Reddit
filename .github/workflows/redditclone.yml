@@ -1,2 +1,42 @@
-name: CI
-#TODO
+name: CI-CD
+
+on:
+  push:
+    branches:
+      - [main, master]
+  pull_request:
+    branches:
+      - [main, master]
+      - types: [opened]
+
+env:
+
+
+jobs:
+#  lint:
+
+  test:
+    name: "Unit testing"
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.x'
+
+      - name: Install deps
+        run: go mod tidy
+
+      - name: Test with Go
+        run: go test ./... -short -json > test-results.json
+
+#      - name: Upload test results
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: test-results
+#          path: test-results.json
+
+
+#  build:
